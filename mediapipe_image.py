@@ -3,9 +3,6 @@ import mediapipe as mp
 import numpy as np
 
 
-
-
-
 def calculate_angle(a, b, c):
     a = np.array(a)  # First
     b = np.array(b)  # Mid
@@ -144,4 +141,4 @@ def startOpenpose(pictureFile):
         # holistic.close()
         image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)  # 颜色通道转换
         annotated_image = cv2.cvtColor(annotated_image, cv2.COLOR_RGB2BGR)  # 颜色通道转换
-        return image, annotated_image,actions
+        return image, annotated_image, actions

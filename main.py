@@ -24,25 +24,6 @@ import mediapipe_image as poseImage
 Now_Username = 'USER'
 Now_Password = ''
 
-# 参考位置选项框flag
-checkBoxDict = {'checkBox_right_elbow_flag': {'angle': 0, 'state': False},
-                'checkBox_right_shoulder_flag': {'angle': 0, 'state': False},
-                'checkBox_left_elbow_flag': {'angle': 0, 'state': False},
-                'checkBox_left_shoulder_flag': {'angle': 0, 'state': False},
-                'checkBox_left_hip_flag': {'angle': 0, 'state': False},
-                'checkBox_right_hip_flag': {'angle': 0, 'state': False},
-                'checkBox_left_knee_flag': {'angle': 0, 'state': False},
-                'checkBox_right_knee_flag': {'angle': 0, 'state': False},
-                }
-checkPointDict = {'1': 'checkBox_right_elbow',
-                  '2': 'checkBox_right_shoulder',
-                  '3': 'checkBox_left_elbow',
-                  '4': 'checkBox_left_shoulder',
-                  '5': 'checkBox_left_hip',
-                  '6': 'checkBox_right_hip',
-                  '7': 'checkBox_left_knee',
-                  '8': 'checkBox_right_knee', }
-checkPointJson = {'sport_name': None, 'check_point': checkBoxDict}
 print("进入main文件")
 
 
@@ -153,6 +134,7 @@ class LoginWindow(QWidget, Ui_login):
 class UserPageWindow(QWidget, Ui_UserPage):
     def __init__(self, parent=None):
         super().__init__(parent)
+        self.QtImg = None
         self.setupUi(self)  # 渲染页面控件
         self.connect_signals()  # 设置信号槽
 
@@ -168,6 +150,116 @@ class UserPageWindow(QWidget, Ui_UserPage):
         self.label_left_hip.installEventFilter(self)
         self.label_right_shoulder.installEventFilter(self)
         self.label_left_shoulder.installEventFilter(self)
+
+        self.label_right_elbow_2.installEventFilter(self)
+        self.label_left_elbow_2.installEventFilter(self)
+        self.label_right_knee_2.installEventFilter(self)
+        self.label_left_knee_2.installEventFilter(self)
+        self.label_right_hip_2.installEventFilter(self)
+        self.label_left_hip_2.installEventFilter(self)
+        self.label_right_shoulder_2.installEventFilter(self)
+        self.label_left_shoulder_2.installEventFilter(self)
+
+        # 角度显示label
+        self.PosePoint = [
+            self.label_right_elbow_data,
+            self.label_right_shoulder_data,
+            self.label_left_elbow_data,
+            self.label_left_shoulder_data,
+            self.label_left_hip_data,
+            self.label_right_hip_data,
+            self.label_left_knee_data,
+            self.label_right_knee_data
+        ]
+        self.PosePoint_2 = [
+            self.label_right_elbow_data_2,
+            self.label_right_shoulder_data_2,
+            self.label_left_elbow_data_2,
+            self.label_left_shoulder_data_2,
+            self.label_left_hip_data_2,
+            self.label_right_hip_data_2,
+            self.label_left_knee_data_2,
+            self.label_right_knee_data_2
+        ]
+        # 勾选框
+        self.checkPoint = [
+            self.checkBox_right_elbow,
+            self.checkBox_right_shoulder,
+            self.checkBox_left_elbow,
+            self.checkBox_left_shoulder,
+            self.checkBox_left_hip,
+            self.checkBox_right_hip,
+            self.checkBox_left_knee,
+            self.checkBox_right_knee,
+        ]
+        self.checkPoint_2 = [
+            self.checkBox_right_elbow_2,
+            self.checkBox_right_shoulder_2,
+            self.checkBox_left_elbow_2,
+            self.checkBox_left_shoulder_2,
+            self.checkBox_left_hip_2,
+            self.checkBox_right_hip_2,
+            self.checkBox_left_knee_2,
+            self.checkBox_right_knee_2,
+        ]
+        # 参考位置选项框flag
+        self.checkBoxDict = {
+            # 开始动作
+            'checkBox_right_elbow_flag': {'angle': 0, 'state': False},
+            'checkBox_right_shoulder_flag': {'angle': 0, 'state': False},
+            'checkBox_left_elbow_flag': {'angle': 0, 'state': False},
+            'checkBox_left_shoulder_flag': {'angle': 0, 'state': False},
+            'checkBox_left_hip_flag': {'angle': 0, 'state': False},
+            'checkBox_right_hip_flag': {'angle': 0, 'state': False},
+            'checkBox_left_knee_flag': {'angle': 0, 'state': False},
+            'checkBox_right_knee_flag': {'angle': 0, 'state': False},
+        }
+        self.checkBoxDict_2 = {
+            # 结束动作
+            'checkBox_right_elbow_2_flag': {'angle': 0, 'state': False},
+            'checkBox_right_shoulder_2_flag': {'angle': 0, 'state': False},
+            'checkBox_left_elbow_2_flag': {'angle': 0, 'state': False},
+            'checkBox_left_shoulder_2_flag': {'angle': 0, 'state': False},
+            'checkBox_left_hip_2_flag': {'angle': 0, 'state': False},
+            'checkBox_right_hip_2_flag': {'angle': 0, 'state': False},
+            'checkBox_left_knee_2_flag': {'angle': 0, 'state': False},
+            'checkBox_right_knee_2_flag': {'angle': 0, 'state': False},
+        }
+        self.checkBoxDictSum = {}
+
+        self.checkPointDict = {
+            # 开始动作
+            '0': 'checkBox_right_elbow',
+            '1': 'checkBox_right_shoulder',
+            '2': 'checkBox_left_elbow',
+            '3': 'checkBox_left_shoulder',
+            '4': 'checkBox_left_hip',
+            '5': 'checkBox_right_hip',
+            '6': 'checkBox_left_knee',
+            '7': 'checkBox_right_knee',
+        }
+        self.checkPointDict_2 = {
+            # 结束动作
+            '0': 'checkBox_right_elbow_2',
+            '1': 'checkBox_right_shoulder_2',
+            '2': 'checkBox_left_elbow_2',
+            '3': 'checkBox_left_shoulder_2',
+            '4': 'checkBox_left_hip_2',
+            '5': 'checkBox_right_hip_2',
+            '6': 'checkBox_left_knee_2',
+            '7': 'checkBox_right_knee_2'
+        }
+
+        self.checkPointJson = {'sport_name': None, 'check_point': self.checkBoxDictSum, 'startPosePicFile': None,
+                               'stopPosePicFile': None}
+
+    def keyPressEvent(self, QKeyEvent):
+        """快捷键"""
+        if QKeyEvent.key() == Qt.Key_F11:  # F11
+            if not self.isFullScreen():
+                self.setWindowState(Qt.WindowFullScreen)  # 窗口最大化
+            else:
+                self.setWindowState(Qt.WindowMaximized)  # 窗口最大化
 
     # 清除填写内容
     def pushButton_page2_clear_clicked(self):
@@ -218,52 +310,55 @@ class UserPageWindow(QWidget, Ui_UserPage):
             self.stackedWidget.setCurrentIndex(5)
 
     # 照片角度显示
-    def showAngle(self, angle_data):
-        self.label_right_elbow_data.setText("{:.2f}°".format(angle_data[0]))
-        self.label_left_elbow_data.setText("{:.2f}°".format(angle_data[1]))
-        self.label_right_knee_data.setText("{:.2f}°".format(angle_data[2]))
-        self.label_left_knee_data.setText("{:.2f}°".format(angle_data[3]))
-        self.label_right_hip_data.setText("{:.2f}°".format(angle_data[4]))
-        self.label_left_hip_data.setText("{:.2f}°".format(angle_data[5]))
-        self.label_right_shoulder_data.setText("{:.2f}°".format(angle_data[6]))
-        self.label_left_shoulder_data.setText("{:.2f}°".format(angle_data[7]))
-        j = 1
+    def showAngle(self, angle_data, labels, _checkBoxDict, checkPointDictInedx):
+        for i in range(8):
+            labels[i].setText("{:.2f}°".format(angle_data[i]))
+        # self.label_right_elbow_data.setText("{:.2f}°".format(angle_data[0]))
+        j = 0
         for i in angle_data:
             # print(i)
-            # print(checkPointDict.get(str(j))+'_flag')
-            checkBoxDict[checkPointDict.get(str(j)) + '_flag']['angle'] = i
-            # print(checkBoxDict[checkPointDict.get(str(j))+'_flag']['angle'])
+            # print(self.checkPointDict.get(str(j))+'_flag')
+            _checkBoxDict[checkPointDictInedx.get(str(j)) + '_flag']['angle'] = i
+            # print(self.checkBoxDict[self.checkPointDict.get(str(j))+'_flag']['angle'])
             j += 1
-        # print(checkBoxDict)
+        # print(self.checkBoxDict)
 
     # 获取图片路径
-    def getFileDirectory(self):
-        fileDirectory = QFileDialog.getOpenFileName(self, "请选择图片路径", "./")  # 返回选中的文件路径
+    def getFileDirectory(self, _checkBoxDict, checkPointDictInedx, labels, labelOnShow):
+        filename = self.lineEdit_sportName.text()
+        if filename == '':
+            QMessageBox.information(None, "警告", "请填写运动名", QMessageBox.Ok)
+            return
+        fileDirectory = QFileDialog.getOpenFileName(self, "请选择图片路径", "./", "*.jpg *.png")  # 返回选中的文件路径
+        if fileDirectory[0] == "": return
         print(fileDirectory)
+        for i in range(8):  # 情况勾选框
+            self.checkPoint[i].setChecked(False)
+            self.checkPoint_2[i].setChecked(False)
         before, later, actions = poseImage.startOpenpose(fileDirectory)
-        self.showAngle(actions)
+        self.showAngle(actions, labels, _checkBoxDict, checkPointDictInedx)
         pix = QPixmap('background.jpg')
-        size = (int(self.label_before.width()), int(self.label_before.height()))
-        # shrink = cv2.resize(before, size, interpolation=cv2.INTER_AREA)
-        # # cv2.imshow('img', shrink)
-        # shrink = cv2.cvtColor(shrink, cv2.COLOR_BGR2RGB)
-        # self.QtImg = QtGui.QImage(shrink.data,
-        #                           shrink.shape[1],
-        #                           shrink.shape[0],
-        #                           shrink.shape[1] * 3,
-        #                           QtGui.QImage.Format_RGB888)
-        #
-        # self.label_before.setPixmap(QtGui.QPixmap.fromImage(self.QtImg))
+        size = (int(labelOnShow.width()), int(labelOnShow.height()))
 
-        shrink1 = cv2.resize(later, size, interpolation=cv2.INTER_AREA)
+        img = cv2.imread(fileDirectory[0])
+        width, height= img.shape[:2]
+        # print("width:" + str(width) + "-" + 'height:' + str(height))
+        # print(size)
+        shrink1 = cv2.resize(later, (height, width), interpolation=cv2.INTER_AREA)
         shrink1 = cv2.cvtColor(shrink1, cv2.COLOR_BGR2RGB)
+        if checkPointDictInedx.get('0') == 'checkBox_right_elbow':
+            saveFileNme = './config/' + self.lineEdit_sportName.text() + '_start.jpg'
+            self.checkPointJson['startPosePicFile'] = saveFileNme
+        elif checkPointDictInedx.get('0') == 'checkBox_right_elbow_2':
+            saveFileNme = './config/' + self.lineEdit_sportName.text() + '_stop.jpg'
+            self.checkPointJson['stopPosePicFile'] = saveFileNme
         self.QtImg = QtGui.QImage(shrink1.data,
                                   shrink1.shape[1],
                                   shrink1.shape[0],
                                   shrink1.shape[1] * 3,
                                   QtGui.QImage.Format_RGB888)
-
-        self.label_before.setPixmap(QtGui.QPixmap.fromImage(self.QtImg))
+        self.QtImg.save(saveFileNme, 'JPG')
+        labelOnShow.setPixmap(QtGui.QPixmap.fromImage(self.QtImg))
 
     # 事件过滤
     def eventFilter(self, object, event):
@@ -293,25 +388,68 @@ class UserPageWindow(QWidget, Ui_UserPage):
         return False
 
     # 根据选择参考修改flag
-    def checkBoxRecord(self, btn, _checkBoxFlags, _state):
+    def checkBoxRecord(self, btn, _checkBoxDict, _checkBoxFlags, _state):
         if btn.isChecked():
-            checkBoxDict[_checkBoxFlags][_state] = True
+            _checkBoxDict[_checkBoxFlags][_state] = True
         else:
-            checkBoxDict[_checkBoxFlags][_state] = False
-        # print("flag:" + str(_checkBoxFlags) + "  " + str(
-        #     checkBoxDict.get(_checkBoxFlags)))
+            _checkBoxDict[_checkBoxFlags][_state] = False
+        print("flag:" + str(_checkBoxFlags) + "  " + str(_checkBoxDict.get(_checkBoxFlags)))
 
     # 创建标准
-    def crateStandard(self):
+    def createStandard(self):
         filename = self.lineEdit_sportName.text()
         if filename == '':
             QMessageBox.information(None, "警告", "请填写运动名", QMessageBox.Ok)
             return
-        checkPointJson['sport_name'] = filename
+        self.checkBoxDictSum = self.checkBoxDict.copy()
+        self.checkBoxDictSum.update(self.checkBoxDict_2)
+        self.checkPointJson['check_point'] = self.checkBoxDictSum
+        self.checkPointJson['sport_name'] = filename
         # 直接用dump()方法将python字典数据写入json文件中,并格式化
         with open("config/" + filename + ".json", 'w') as write_f:
-            json.dump(checkPointJson, write_f, indent=4, ensure_ascii=False)
+            json.dump(self.checkPointJson, write_f, indent=4, ensure_ascii=False)
             QMessageBox.information(None, "提示", "创建" + filename + "运动完成", QMessageBox.Ok)
+
+    def readStandard(self):
+        fileDirectory = QFileDialog.getOpenFileName(self, "请选择标准路径", "./config", "*.json")  # 返回选中的文件路径
+        if fileDirectory[0] == "": return
+        print(fileDirectory)
+        with open(fileDirectory[0], 'r') as load_f:
+            load_dict = json.load(load_f)
+            print(load_dict)
+            print(type(load_dict))
+
+        sport_name = load_dict['sport_name']
+        check_point = load_dict['check_point']
+        startPosePicFile = load_dict['startPosePicFile']
+        stopPosePicFile = load_dict['stopPosePicFile']
+
+        # 角度和勾选框数据导入
+        for i in range(8):  # 开始动作数据导入
+            self.PosePoint[i].setText("{:.2f}°".format(check_point[self.checkPointDict.get(str(i)) + '_flag']['angle']))
+        for i in range(8):  # 开始动作数据导入
+            if check_point[self.checkPointDict.get(str(i)) + '_flag']['state'] == True:
+                self.checkPoint[i].setChecked(True)
+            else:
+                self.checkPoint[i].setChecked(False)
+        for i in range(8):  # 结束动作数据导入
+            self.PosePoint_2[i].setText("{:.2f}°".format(check_point[self.checkPointDict_2.get(str(i)) + '_flag']['angle']))
+
+        for i in range(8):  # 开始动作数据导入
+            if check_point[self.checkPointDict_2.get(str(i)) + '_flag']['state'] == True:
+                self.checkPoint_2[i].setChecked(True)
+            else:
+                self.checkPoint_2[i].setChecked(False)
+
+        _width, _height = (int(self.label_startActionPicture.width()), int(self.label_startActionPicture.height()))
+        print(_width, _height)
+        pix_start = QPixmap(startPosePicFile)
+        pix_start.scaled(_width, _height)
+        self.label_startActionPicture.setPixmap(pix_start)
+
+        pix_stop = QPixmap(stopPosePicFile)
+        pix_stop.scaled(_width, _height)
+        self.label_stopActionPicture.setPixmap(pix_stop)
 
     # 信号连接
     def connect_signals(self):
@@ -319,26 +457,52 @@ class UserPageWindow(QWidget, Ui_UserPage):
         self.pushButton_page2_clear.clicked.connect(self.pushButton_page2_clear_clicked)  # 清除填写内容
         self.pushButton_page2_ok.clicked.connect(self.pushButton_page2_ok_clicked)  # 确认密码修改
         self.listWidget.clicked.connect(self.listWidget_clicked)  # 左侧工具栏点击切换界面
-        self.pushButton_startOpenpose.clicked.connect(self.getFileDirectory)  # 获取图片路径
-        self.pushButton_cteateStandard.clicked.connect(self.crateStandard)
-
+        self.pushButton_startAction.clicked.connect(
+            lambda: self.getFileDirectory(self.checkBoxDict, self.checkPointDict, self.PosePoint,
+                                          self.label_startActionPicture))  # 获取开始动作图片路径
+        self.pushButton_stopAction.clicked.connect(
+            lambda: self.getFileDirectory(self.checkBoxDict_2, self.checkPointDict_2, self.PosePoint_2,
+                                          self.label_stopActionPicture))  # 获取结束动作图片路径
+        self.pushButton_cteateStandard.clicked.connect(self.createStandard)  # 生成标准
+        self.pushButton_readStandard.clicked.connect(self.readStandard)  # 查看标准
         # 根据选择参考修改flag
+        # 开始动作
         self.checkBox_right_elbow.stateChanged.connect(
-            lambda: self.checkBoxRecord(self.checkBox_right_elbow, 'checkBox_right_elbow_flag', 'state'))
+            lambda: self.checkBoxRecord(self.checkBox_right_elbow, self.checkBoxDict, 'checkBox_right_elbow_flag', 'state'))
         self.checkBox_right_shoulder.stateChanged.connect(
-            lambda: self.checkBoxRecord(self.checkBox_right_shoulder, 'checkBox_right_shoulder_flag', 'state'))
+            lambda: self.checkBoxRecord(self.checkBox_right_shoulder, self.checkBoxDict, 'checkBox_right_shoulder_flag', 'state'))
         self.checkBox_left_elbow.stateChanged.connect(
-            lambda: self.checkBoxRecord(self.checkBox_left_elbow, 'checkBox_left_elbow_flag', 'state'))
+            lambda: self.checkBoxRecord(self.checkBox_left_elbow, self.checkBoxDict, 'checkBox_left_elbow_flag', 'state'))
         self.checkBox_left_shoulder.stateChanged.connect(
-            lambda: self.checkBoxRecord(self.checkBox_left_shoulder, 'checkBox_left_shoulder_flag', 'state'))
+            lambda: self.checkBoxRecord(self.checkBox_left_shoulder, self.checkBoxDict, 'checkBox_left_shoulder_flag', 'state'))
         self.checkBox_left_hip.stateChanged.connect(
-            lambda: self.checkBoxRecord(self.checkBox_left_hip, 'checkBox_left_hip_flag', 'state'))
+            lambda: self.checkBoxRecord(self.checkBox_left_hip, self.checkBoxDict, 'checkBox_left_hip_flag', 'state'))
         self.checkBox_right_hip.stateChanged.connect(
-            lambda: self.checkBoxRecord(self.checkBox_right_hip, 'checkBox_right_hip_flag', 'state'))
+            lambda: self.checkBoxRecord(self.checkBox_right_hip, self.checkBoxDict, 'checkBox_right_hip_flag', 'state'))
         self.checkBox_left_knee.stateChanged.connect(
-            lambda: self.checkBoxRecord(self.checkBox_left_knee, 'checkBox_left_knee_flag', 'state'))
+            lambda: self.checkBoxRecord(self.checkBox_left_knee, self.checkBoxDict, 'checkBox_left_knee_flag', 'state'))
         self.checkBox_right_knee.stateChanged.connect(
-            lambda: self.checkBoxRecord(self.checkBox_right_knee, 'checkBox_right_knee_flag', 'state'))
+            lambda: self.checkBoxRecord(self.checkBox_right_knee, self.checkBoxDict, 'checkBox_right_knee_flag', 'state'))
+
+        # 结束动作
+        self.checkBox_right_elbow_2.stateChanged.connect(
+            lambda: self.checkBoxRecord(self.checkBox_right_elbow_2, self.checkBoxDict_2, 'checkBox_right_elbow_2_flag', 'state'))
+        self.checkBox_right_shoulder_2.stateChanged.connect(
+            lambda: self.checkBoxRecord(self.checkBox_right_shoulder_2, self.checkBoxDict_2, 'checkBox_right_shoulder_2_flag',
+                                        'state'))
+        self.checkBox_left_elbow_2.stateChanged.connect(
+            lambda: self.checkBoxRecord(self.checkBox_left_elbow_2, self.checkBoxDict_2, 'checkBox_left_elbow_2_flag', 'state'))
+        self.checkBox_left_shoulder_2.stateChanged.connect(
+            lambda: self.checkBoxRecord(self.checkBox_left_shoulder_2, self.checkBoxDict_2, 'checkBox_left_shoulder_2_flag',
+                                        'state'))
+        self.checkBox_left_hip_2.stateChanged.connect(
+            lambda: self.checkBoxRecord(self.checkBox_left_hip_2, self.checkBoxDict_2, 'checkBox_left_hip_2_flag', 'state'))
+        self.checkBox_right_hip_2.stateChanged.connect(
+            lambda: self.checkBoxRecord(self.checkBox_right_hip_2, self.checkBoxDict_2, 'checkBox_right_hip_2_flag', 'state'))
+        self.checkBox_left_knee_2.stateChanged.connect(
+            lambda: self.checkBoxRecord(self.checkBox_left_knee_2, self.checkBoxDict_2, 'checkBox_left_knee_2_flag', 'state'))
+        self.checkBox_right_knee_2.stateChanged.connect(
+            lambda: self.checkBoxRecord(self.checkBox_right_knee_2, self.checkBoxDict_2, 'checkBox_right_knee_2_flag', 'state'))
 
 
 if __name__ == '__main__':
