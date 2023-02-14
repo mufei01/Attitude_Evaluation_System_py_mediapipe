@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_UserPage(object):
     def setupUi(self, UserPage):
         UserPage.setObjectName("UserPage")
-        UserPage.resize(1270, 862)
+        UserPage.resize(1266, 853)
         self.verticalLayout_8 = QtWidgets.QVBoxLayout(UserPage)
         self.verticalLayout_8.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_8.setObjectName("verticalLayout_8")
@@ -660,6 +660,7 @@ class Ui_UserPage(object):
         self.horizontalLayout_10.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_10.setObjectName("horizontalLayout_10")
         self.scrollArea = QtWidgets.QScrollArea(self.StaticCheckPage)
+        self.scrollArea.setStyleSheet("")
         self.scrollArea.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.scrollArea.setFrameShadow(QtWidgets.QFrame.Plain)
         self.scrollArea.setLineWidth(1)
@@ -667,7 +668,7 @@ class Ui_UserPage(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, -32, 972, 872))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 630, 727))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.verticalLayout_7 = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_7.setObjectName("verticalLayout_7")
@@ -1503,26 +1504,203 @@ class Ui_UserPage(object):
         self.stackedWidget.addWidget(self.StaticCheckPage)
         self.dynamicCheckPage = QtWidgets.QWidget()
         self.dynamicCheckPage.setObjectName("dynamicCheckPage")
-        self.verticalLayout_9 = QtWidgets.QVBoxLayout(self.dynamicCheckPage)
+        self.verticalLayout_12 = QtWidgets.QVBoxLayout(self.dynamicCheckPage)
+        self.verticalLayout_12.setObjectName("verticalLayout_12")
+        self.scrollArea_2 = QtWidgets.QScrollArea(self.dynamicCheckPage)
+        self.scrollArea_2.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.scrollArea_2.setWidgetResizable(True)
+        self.scrollArea_2.setObjectName("scrollArea_2")
+        self.scrollAreaWidgetContents_2 = QtWidgets.QWidget()
+        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, 0, 976, 817))
+        self.scrollAreaWidgetContents_2.setObjectName("scrollAreaWidgetContents_2")
+        self.verticalLayout_9 = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents_2)
+        self.verticalLayout_9.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_9.setObjectName("verticalLayout_9")
-        self.widget_16 = QtWidgets.QWidget(self.dynamicCheckPage)
+        self.widget_16 = QtWidgets.QWidget(self.scrollAreaWidgetContents_2)
         self.widget_16.setStyleSheet("QWidget#widget_16\n"
 "{\n"
 "    background-color: rgba(255, 255, 255,255);\n"
 "    border-radius:20px;\n"
 "}")
         self.widget_16.setObjectName("widget_16")
+        self.verticalLayout_13 = QtWidgets.QVBoxLayout(self.widget_16)
+        self.verticalLayout_13.setObjectName("verticalLayout_13")
+        self.label_video = QtWidgets.QLabel(self.widget_16)
+        font = QtGui.QFont()
+        font.setFamily("微软雅黑")
+        font.setPointSize(100)
+        self.label_video.setFont(font)
+        self.label_video.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_video.setObjectName("label_video")
+        self.verticalLayout_13.addWidget(self.label_video)
         self.verticalLayout_9.addWidget(self.widget_16)
-        self.widget_17 = QtWidgets.QWidget(self.dynamicCheckPage)
+        self.widget_17 = QtWidgets.QWidget(self.scrollAreaWidgetContents_2)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.widget_17.sizePolicy().hasHeightForWidth())
+        self.widget_17.setSizePolicy(sizePolicy)
         self.widget_17.setStyleSheet("QWidget#widget_17\n"
 "{\n"
 "    background-color: rgba(255, 255, 255,255);\n"
 "    border-radius:20px;\n"
 "}")
         self.widget_17.setObjectName("widget_17")
+        self.horizontalLayout_12 = QtWidgets.QHBoxLayout(self.widget_17)
+        self.horizontalLayout_12.setObjectName("horizontalLayout_12")
+        spacerItem10 = QtWidgets.QSpacerItem(225, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_12.addItem(spacerItem10)
+        self.pushButton_startDetection = QtWidgets.QPushButton(self.widget_17)
+        self.pushButton_startDetection.setStyleSheet("/**正常情况下样式**/\n"
+"QPushButton{\n"
+"    font: 13pt \"微软雅黑\";\n"
+"    color: #2f3640;\n"
+"    background-color: #f5f6fa;\n"
+"    border-color: #2f3640;\n"
+"    border-radius: 15px;\n"
+"    border-style: solid;\n"
+"    border-width: 2px;\n"
+"    padding: 5px;\n"
+"}\n"
+"\n"
+"/**鼠标停留在按钮上的样式**/\n"
+"QPushButton::hover{    \n"
+"    color: #FFFFFF;\n"
+"    background-color: #718093;\n"
+"    border-color: #2f3640;\n"
+"}\n"
+"\n"
+"/**鼠标按压下去的样式**/\n"
+"QPushButton::pressed,QPushButton::checked{\n"
+"    color: #FFFFFF;\n"
+"    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);\n"
+"}\n"
+"\n"
+"/**按钮失能情况下样式**/\n"
+"QPushButton::disabled{\n"
+"    color: #FFFFFF;\n"
+"    background-color: #dcdde1;\n"
+"    border-color: #dcdde1;\n"
+"}\n"
+"")
+        self.pushButton_startDetection.setObjectName("pushButton_startDetection")
+        self.horizontalLayout_12.addWidget(self.pushButton_startDetection)
+        spacerItem11 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_12.addItem(spacerItem11)
+        self.pushButton_stopDetection = QtWidgets.QPushButton(self.widget_17)
+        self.pushButton_stopDetection.setStyleSheet("/**正常情况下样式**/\n"
+"QPushButton{\n"
+"    font: 13pt \"微软雅黑\";\n"
+"    color: #2f3640;\n"
+"    background-color: #f5f6fa;\n"
+"    border-color: #2f3640;\n"
+"    border-radius: 15px;\n"
+"    border-style: solid;\n"
+"    border-width: 2px;\n"
+"    padding: 5px;\n"
+"}\n"
+"\n"
+"/**鼠标停留在按钮上的样式**/\n"
+"QPushButton::hover{    \n"
+"    color: #FFFFFF;\n"
+"    background-color: #718093;\n"
+"    border-color: #2f3640;\n"
+"}\n"
+"\n"
+"/**鼠标按压下去的样式**/\n"
+"QPushButton::pressed,QPushButton::checked{\n"
+"    color: #FFFFFF;\n"
+"    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);\n"
+"}\n"
+"\n"
+"/**按钮失能情况下样式**/\n"
+"QPushButton::disabled{\n"
+"    color: #FFFFFF;\n"
+"    background-color: #dcdde1;\n"
+"    border-color: #dcdde1;\n"
+"}\n"
+"")
+        self.pushButton_stopDetection.setObjectName("pushButton_stopDetection")
+        self.horizontalLayout_12.addWidget(self.pushButton_stopDetection)
+        spacerItem12 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_12.addItem(spacerItem12)
+        self.pushButton_readStandard_2 = QtWidgets.QPushButton(self.widget_17)
+        self.pushButton_readStandard_2.setStyleSheet("/**正常情况下样式**/\n"
+"QPushButton{\n"
+"    font: 13pt \"微软雅黑\";\n"
+"    color: #2f3640;\n"
+"    background-color: #f5f6fa;\n"
+"    border-color: #2f3640;\n"
+"    border-radius: 15px;\n"
+"    border-style: solid;\n"
+"    border-width: 2px;\n"
+"    padding: 5px;\n"
+"}\n"
+"\n"
+"/**鼠标停留在按钮上的样式**/\n"
+"QPushButton::hover{    \n"
+"    color: #FFFFFF;\n"
+"    background-color: #718093;\n"
+"    border-color: #2f3640;\n"
+"}\n"
+"\n"
+"/**鼠标按压下去的样式**/\n"
+"QPushButton::pressed,QPushButton::checked{\n"
+"    color: #FFFFFF;\n"
+"    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);\n"
+"}\n"
+"\n"
+"/**按钮失能情况下样式**/\n"
+"QPushButton::disabled{\n"
+"    color: #FFFFFF;\n"
+"    background-color: #dcdde1;\n"
+"    border-color: #dcdde1;\n"
+"}\n"
+"")
+        self.pushButton_readStandard_2.setObjectName("pushButton_readStandard_2")
+        self.horizontalLayout_12.addWidget(self.pushButton_readStandard_2)
+        spacerItem13 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_12.addItem(spacerItem13)
+        self.pushButton_showResult = QtWidgets.QPushButton(self.widget_17)
+        self.pushButton_showResult.setStyleSheet("/**正常情况下样式**/\n"
+"QPushButton{\n"
+"    font: 13pt \"微软雅黑\";\n"
+"    color: #2f3640;\n"
+"    background-color: #f5f6fa;\n"
+"    border-color: #2f3640;\n"
+"    border-radius: 15px;\n"
+"    border-style: solid;\n"
+"    border-width: 2px;\n"
+"    padding: 5px;\n"
+"}\n"
+"\n"
+"/**鼠标停留在按钮上的样式**/\n"
+"QPushButton::hover{    \n"
+"    color: #FFFFFF;\n"
+"    background-color: #718093;\n"
+"    border-color: #2f3640;\n"
+"}\n"
+"\n"
+"/**鼠标按压下去的样式**/\n"
+"QPushButton::pressed,QPushButton::checked{\n"
+"    color: #FFFFFF;\n"
+"    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);\n"
+"}\n"
+"\n"
+"/**按钮失能情况下样式**/\n"
+"QPushButton::disabled{\n"
+"    color: #FFFFFF;\n"
+"    background-color: #dcdde1;\n"
+"    border-color: #dcdde1;\n"
+"}\n"
+"")
+        self.pushButton_showResult.setObjectName("pushButton_showResult")
+        self.horizontalLayout_12.addWidget(self.pushButton_showResult)
+        spacerItem14 = QtWidgets.QSpacerItem(225, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_12.addItem(spacerItem14)
         self.verticalLayout_9.addWidget(self.widget_17)
-        self.verticalLayout_9.setStretch(0, 11)
-        self.verticalLayout_9.setStretch(1, 1)
+        self.scrollArea_2.setWidget(self.scrollAreaWidgetContents_2)
+        self.verticalLayout_12.addWidget(self.scrollArea_2)
         self.stackedWidget.addWidget(self.dynamicCheckPage)
         self.videoCheckPage = QtWidgets.QWidget()
         self.videoCheckPage.setObjectName("videoCheckPage")
@@ -1553,7 +1731,7 @@ class Ui_UserPage(object):
         self.verticalLayout_8.addWidget(self.widget_2)
 
         self.retranslateUi(UserPage)
-        self.stackedWidget.setCurrentIndex(3)
+        self.stackedWidget.setCurrentIndex(4)
         QtCore.QMetaObject.connectSlotsByName(UserPage)
 
     def retranslateUi(self, UserPage):
@@ -1637,4 +1815,9 @@ class Ui_UserPage(object):
         self.lineEdit_sportName.setPlaceholderText(_translate("UserPage", "输入运动的名字"))
         self.pushButton_cteateStandard.setText(_translate("UserPage", "生成标准"))
         self.pushButton_readStandard.setText(_translate("UserPage", "打开标准"))
+        self.label_video.setText(_translate("UserPage", "Video"))
+        self.pushButton_startDetection.setText(_translate("UserPage", "开始检测"))
+        self.pushButton_stopDetection.setText(_translate("UserPage", "结束检测"))
+        self.pushButton_readStandard_2.setText(_translate("UserPage", "导入标准"))
+        self.pushButton_showResult.setText(_translate("UserPage", "显示成绩"))
 import res_rc

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import json
 import sys
+import threading
 
 import cv2
 # from PyQt5.QtCore import Qt
@@ -19,10 +20,17 @@ from login import Ui_login
 from userpage import Ui_UserPage
 import database
 import mediapipe_image as poseImage
+import mediapipe as mp
+import numpy as np
 
 # 当前用户,当前密码
 Now_Username = 'USER'
 Now_Password = ''
+
+sport_name = None
+check_point = None
+startPosePicFile = None
+stopPosePicFile = None
 
 print("进入main文件")
 
@@ -134,7 +142,9 @@ class LoginWindow(QWidget, Ui_login):
 class UserPageWindow(QWidget, Ui_UserPage):
     def __init__(self, parent=None):
         super().__init__(parent)
+        self.cap = None
         self.QtImg = None
+        self.thstop = False
         self.setupUi(self)  # 渲染页面控件
         self.connect_signals()  # 设置信号槽
 
@@ -341,7 +351,7 @@ class UserPageWindow(QWidget, Ui_UserPage):
         size = (int(labelOnShow.width()), int(labelOnShow.height()))
 
         img = cv2.imread(fileDirectory[0])
-        width, height= img.shape[:2]
+        width, height = img.shape[:2]
         # print("width:" + str(width) + "-" + 'height:' + str(height))
         # print(size)
         shrink1 = cv2.resize(later, (height, width), interpolation=cv2.INTER_AREA)
@@ -411,6 +421,7 @@ class UserPageWindow(QWidget, Ui_UserPage):
             QMessageBox.information(None, "提示", "创建" + filename + "运动完成", QMessageBox.Ok)
 
     def readStandard(self):
+        global sport_name,check_point,startPosePicFile,stopPosePicFile
         fileDirectory = QFileDialog.getOpenFileName(self, "请选择标准路径", "./config", "*.json")  # 返回选中的文件路径
         if fileDirectory[0] == "": return
         print(fileDirectory)
@@ -451,6 +462,90 @@ class UserPageWindow(QWidget, Ui_UserPage):
         pix_stop.scaled(_width, _height)
         self.label_stopActionPicture.setPixmap(pix_stop)
 
+    def stopDetection(self):
+        self.thstop = True
+
+    # 检测界面
+    def startDetection(self):
+        mp_drawing = mp.solutions.drawing_utils
+        mp_pose = mp.solutions.pose
+        counter = 0
+        stage = None
+        print("open camera")
+        self.thstop = False
+        self.cap = cv2.VideoCapture(0)  # 开启摄像头
+        self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, 800)
+        self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 600)
+        self.cap.set(cv2.CAP_PROP_FPS, 20)
+        with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as pose:
+            while self.cap.isOpened():
+                if self.thstop:
+                    print("cap stop")
+                    self.cap.release()
+                    return
+                ret, img = self.cap.read()
+                if ret == False:
+                    print("ret:False")
+                    continue
+                # get a frame
+                ret, img = self.cap.read()
+                img = cv2.flip(img, 1)
+                height, width, bytesPerComponent = img.shape
+                bytesPerLine = bytesPerComponent * width
+                # 变换彩色空间顺序
+                image = cv2.cvtColor(img, cv2.COLOR_BGR2RGB, img)
+
+                image.flags.writeable = False
+
+                # Make detection
+                results = pose.process(image)
+
+                # Recolor back to BGR
+                image.flags.writeable = True
+                # image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+
+                # Extract landmarks
+                try:
+                    landmarks = results.pose_landmarks.landmark
+
+                    # Get coordinates
+                    shoulder = [landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].x,
+                                landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].y]
+                    elbow = [landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].x,
+                             landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].y]
+                    wrist = [landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value].x,
+                             landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value].y]
+
+                    # Calculate angle
+                    angle = poseImage.calculate_angle(shoulder, elbow, wrist)
+
+                    # Visualize angle
+                    cv2.putText(image, str(angle),
+                                tuple(np.multiply(elbow, [640, 480]).astype(int)),
+                                cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA
+                                )
+
+                    # Curl counter logic
+                    if angle > 160:
+                        stage = "down"
+                    if angle < 40 and stage == 'down':
+                        stage = "up"
+                        counter += 1
+                        print(counter)
+
+                except:
+                    pass
+                # Render detections
+                mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS,
+                                          mp_drawing.DrawingSpec(color=(245, 117, 66), thickness=2, circle_radius=2),
+                                          mp_drawing.DrawingSpec(color=(245, 66, 230), thickness=2, circle_radius=2)
+                                          )
+                # 转为QImage对象
+
+                self.image = QImage(image.data, width, height, bytesPerLine, QImage.Format_RGB888)
+                self.label_video.setPixmap(
+                    QPixmap.fromImage(self.image).scaled(self.label_video.width(), self.label_video.height()))
+
     # 信号连接
     def connect_signals(self):
         self.pushButton_personaLinfoPage_ok.clicked.connect(self.pushButton_personaLinfoPage_ok_clicked)  # 个人信息修改确认
@@ -465,6 +560,10 @@ class UserPageWindow(QWidget, Ui_UserPage):
                                           self.label_stopActionPicture))  # 获取结束动作图片路径
         self.pushButton_cteateStandard.clicked.connect(self.createStandard)  # 生成标准
         self.pushButton_readStandard.clicked.connect(self.readStandard)  # 查看标准
+
+        # 检测界面
+        self.pushButton_startDetection.clicked.connect(lambda: thread_it(True, self.startDetection))  # 开始检测
+        self.pushButton_stopDetection.clicked.connect(self.stopDetection)  # 结束检测
         # 根据选择参考修改flag
         # 开始动作
         self.checkBox_right_elbow.stateChanged.connect(
@@ -505,20 +604,28 @@ class UserPageWindow(QWidget, Ui_UserPage):
             lambda: self.checkBoxRecord(self.checkBox_right_knee_2, self.checkBoxDict_2, 'checkBox_right_knee_2_flag', 'state'))
 
 
-if __name__ == '__main__':
-    print("进入__name__ == '__main__'")
-    app = QApplication(sys.argv)
-    login_ui = LoginWindow()  # 登录界面
-    login_ui.show()  # 打开登录界面
-    userPage = UserPageWindow()  # 主界面
+def thread_it(_bool, func, *args):
+    t = threading.Thread(target=func, args=args)  # 调用func函数
+    t.setDaemon(_bool)  # False设置为用户线程,True设置守护线程
+    # 用户线程和守护线程的区别:
+    # 主线程结束后用户线程还会继续运行，主线程结束后，如果没有用户线程，都是守护线程，那么结束（随之而来的是所有的一切烟消云散，包括所有的守护线程）。
+    t.start()
 
-    database.createConnection()  # 创建连接
-    # database.createTable()#创建数据库内容
 
-    # ------------------按钮信号连接-----------------
-    # 关闭登录界面
-    login_ui.pushButton_quit.clicked.connect(  # 切换界面到userpage画面
-        lambda: {login_ui.close()}
-    )
+# if __name__ == '__main__':
+print("进入__name__ == '__main__'")
+app = QApplication(sys.argv)
+login_ui = LoginWindow()  # 登录界面
+login_ui.show()  # 打开登录界面
+userPage = UserPageWindow()  # 主界面
 
-    sys.exit(app.exec_())
+database.createConnection()  # 创建连接
+# database.createTable()#创建数据库内容
+
+# ------------------按钮信号连接-----------------
+# 关闭登录界面
+login_ui.pushButton_quit.clicked.connect(  # 切换界面到userpage画面
+    lambda: {login_ui.close()}
+)
+
+sys.exit(app.exec_())

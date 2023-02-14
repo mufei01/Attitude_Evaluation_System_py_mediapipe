@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1270</width>
-    <height>862</height>
+    <width>1266</width>
+    <height>853</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -281,7 +281,7 @@ border-left: 2px solid rgb(90, 216, 212)
          <enum>QFrame::NoFrame</enum>
         </property>
         <property name="currentIndex">
-         <number>3</number>
+         <number>4</number>
         </property>
         <widget class="QWidget" name="HomePage">
          <layout class="QVBoxLayout" name="verticalLayout_4" stretch="1,11">
@@ -986,6 +986,9 @@ QPushButton::disabled{
           </property>
           <item>
            <widget class="QScrollArea" name="scrollArea">
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
             <property name="frameShape">
              <enum>QFrame::NoFrame</enum>
             </property>
@@ -1005,9 +1008,9 @@ QPushButton::disabled{
              <property name="geometry">
               <rect>
                <x>0</x>
-               <y>-32</y>
-               <width>972</width>
-               <height>872</height>
+               <y>0</y>
+               <width>630</width>
+               <height>727</height>
               </rect>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -2536,27 +2539,325 @@ QPushButton::disabled{
          </layout>
         </widget>
         <widget class="QWidget" name="dynamicCheckPage">
-         <layout class="QVBoxLayout" name="verticalLayout_9" stretch="11,1">
+         <layout class="QVBoxLayout" name="verticalLayout_12">
           <item>
-           <widget class="QWidget" name="widget_16" native="true">
-            <property name="styleSheet">
-             <string notr="true">QWidget#widget_16
+           <widget class="QScrollArea" name="scrollArea_2">
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="widgetResizable">
+             <bool>true</bool>
+            </property>
+            <widget class="QWidget" name="scrollAreaWidgetContents_2">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>0</y>
+               <width>976</width>
+               <height>817</height>
+              </rect>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_9">
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QWidget" name="widget_16" native="true">
+                <property name="styleSheet">
+                 <string notr="true">QWidget#widget_16
 {
 	background-color: rgba(255, 255, 255,255);
 	border-radius:20px;
 }</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QWidget" name="widget_17" native="true">
-            <property name="styleSheet">
-             <string notr="true">QWidget#widget_17
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_13">
+                 <item>
+                  <widget class="QLabel" name="label_video">
+                   <property name="font">
+                    <font>
+                     <family>微软雅黑</family>
+                     <pointsize>100</pointsize>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>Video</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QWidget" name="widget_17" native="true">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QWidget#widget_17
 {
 	background-color: rgba(255, 255, 255,255);
 	border-radius:20px;
 }</string>
-            </property>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_12">
+                 <item>
+                  <spacer name="horizontalSpacer_20">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>225</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButton_startDetection">
+                   <property name="styleSheet">
+                    <string notr="true">/**正常情况下样式**/
+QPushButton{
+	font: 13pt &quot;微软雅黑&quot;;
+    color: #2f3640;
+    background-color: #f5f6fa;
+    border-color: #2f3640;
+    border-radius: 15px;
+    border-style: solid;
+    border-width: 2px;
+    padding: 5px;
+}
+
+/**鼠标停留在按钮上的样式**/
+QPushButton::hover{	
+    color: #FFFFFF;
+    background-color: #718093;
+    border-color: #2f3640;
+}
+
+/**鼠标按压下去的样式**/
+QPushButton::pressed,QPushButton::checked{
+    color: #FFFFFF;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);
+}
+
+/**按钮失能情况下样式**/
+QPushButton::disabled{
+    color: #FFFFFF;
+    background-color: #dcdde1;
+    border-color: #dcdde1;
+}
+</string>
+                   </property>
+                   <property name="text">
+                    <string>开始检测</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_18">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeType">
+                    <enum>QSizePolicy::Fixed</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButton_stopDetection">
+                   <property name="styleSheet">
+                    <string notr="true">/**正常情况下样式**/
+QPushButton{
+	font: 13pt &quot;微软雅黑&quot;;
+    color: #2f3640;
+    background-color: #f5f6fa;
+    border-color: #2f3640;
+    border-radius: 15px;
+    border-style: solid;
+    border-width: 2px;
+    padding: 5px;
+}
+
+/**鼠标停留在按钮上的样式**/
+QPushButton::hover{	
+    color: #FFFFFF;
+    background-color: #718093;
+    border-color: #2f3640;
+}
+
+/**鼠标按压下去的样式**/
+QPushButton::pressed,QPushButton::checked{
+    color: #FFFFFF;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);
+}
+
+/**按钮失能情况下样式**/
+QPushButton::disabled{
+    color: #FFFFFF;
+    background-color: #dcdde1;
+    border-color: #dcdde1;
+}
+</string>
+                   </property>
+                   <property name="text">
+                    <string>结束检测</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_17">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeType">
+                    <enum>QSizePolicy::Fixed</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButton_readStandard_2">
+                   <property name="styleSheet">
+                    <string notr="true">/**正常情况下样式**/
+QPushButton{
+	font: 13pt &quot;微软雅黑&quot;;
+    color: #2f3640;
+    background-color: #f5f6fa;
+    border-color: #2f3640;
+    border-radius: 15px;
+    border-style: solid;
+    border-width: 2px;
+    padding: 5px;
+}
+
+/**鼠标停留在按钮上的样式**/
+QPushButton::hover{	
+    color: #FFFFFF;
+    background-color: #718093;
+    border-color: #2f3640;
+}
+
+/**鼠标按压下去的样式**/
+QPushButton::pressed,QPushButton::checked{
+    color: #FFFFFF;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);
+}
+
+/**按钮失能情况下样式**/
+QPushButton::disabled{
+    color: #FFFFFF;
+    background-color: #dcdde1;
+    border-color: #dcdde1;
+}
+</string>
+                   </property>
+                   <property name="text">
+                    <string>导入标准</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_19">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeType">
+                    <enum>QSizePolicy::Fixed</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButton_showResult">
+                   <property name="styleSheet">
+                    <string notr="true">/**正常情况下样式**/
+QPushButton{
+	font: 13pt &quot;微软雅黑&quot;;
+    color: #2f3640;
+    background-color: #f5f6fa;
+    border-color: #2f3640;
+    border-radius: 15px;
+    border-style: solid;
+    border-width: 2px;
+    padding: 5px;
+}
+
+/**鼠标停留在按钮上的样式**/
+QPushButton::hover{	
+    color: #FFFFFF;
+    background-color: #718093;
+    border-color: #2f3640;
+}
+
+/**鼠标按压下去的样式**/
+QPushButton::pressed,QPushButton::checked{
+    color: #FFFFFF;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);
+}
+
+/**按钮失能情况下样式**/
+QPushButton::disabled{
+    color: #FFFFFF;
+    background-color: #dcdde1;
+    border-color: #dcdde1;
+}
+</string>
+                   </property>
+                   <property name="text">
+                    <string>显示成绩</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_16">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>225</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
            </widget>
           </item>
          </layout>
