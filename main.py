@@ -145,6 +145,10 @@ class UserPageWindow(QWidget, Ui_UserPage):
         self.cap = None
         self.QtImg = None
         self.thstop = False
+        self.isReadStandard = False
+        self.stage_flag = False
+        self.isChangePose = True
+
         self.setupUi(self)  # 渲染页面控件
         self.connect_signals()  # 设置信号槽
 
@@ -173,8 +177,8 @@ class UserPageWindow(QWidget, Ui_UserPage):
         # 角度显示label
         self.PosePoint = [
             self.label_right_elbow_data,
-            self.label_right_shoulder_data,
             self.label_left_elbow_data,
+            self.label_right_shoulder_data,
             self.label_left_shoulder_data,
             self.label_left_hip_data,
             self.label_right_hip_data,
@@ -183,8 +187,8 @@ class UserPageWindow(QWidget, Ui_UserPage):
         ]
         self.PosePoint_2 = [
             self.label_right_elbow_data_2,
-            self.label_right_shoulder_data_2,
             self.label_left_elbow_data_2,
+            self.label_right_shoulder_data_2,
             self.label_left_shoulder_data_2,
             self.label_left_hip_data_2,
             self.label_right_hip_data_2,
@@ -194,30 +198,20 @@ class UserPageWindow(QWidget, Ui_UserPage):
         # 勾选框
         self.checkPoint = [
             self.checkBox_right_elbow,
-            self.checkBox_right_shoulder,
             self.checkBox_left_elbow,
+            self.checkBox_right_shoulder,
             self.checkBox_left_shoulder,
             self.checkBox_left_hip,
             self.checkBox_right_hip,
             self.checkBox_left_knee,
             self.checkBox_right_knee,
         ]
-        self.checkPoint_2 = [
-            self.checkBox_right_elbow_2,
-            self.checkBox_right_shoulder_2,
-            self.checkBox_left_elbow_2,
-            self.checkBox_left_shoulder_2,
-            self.checkBox_left_hip_2,
-            self.checkBox_right_hip_2,
-            self.checkBox_left_knee_2,
-            self.checkBox_right_knee_2,
-        ]
         # 参考位置选项框flag
         self.checkBoxDict = {
             # 开始动作
             'checkBox_right_elbow_flag': {'angle': 0, 'state': False},
-            'checkBox_right_shoulder_flag': {'angle': 0, 'state': False},
             'checkBox_left_elbow_flag': {'angle': 0, 'state': False},
+            'checkBox_right_shoulder_flag': {'angle': 0, 'state': False},
             'checkBox_left_shoulder_flag': {'angle': 0, 'state': False},
             'checkBox_left_hip_flag': {'angle': 0, 'state': False},
             'checkBox_right_hip_flag': {'angle': 0, 'state': False},
@@ -227,8 +221,8 @@ class UserPageWindow(QWidget, Ui_UserPage):
         self.checkBoxDict_2 = {
             # 结束动作
             'checkBox_right_elbow_2_flag': {'angle': 0, 'state': False},
-            'checkBox_right_shoulder_2_flag': {'angle': 0, 'state': False},
             'checkBox_left_elbow_2_flag': {'angle': 0, 'state': False},
+            'checkBox_right_shoulder_2_flag': {'angle': 0, 'state': False},
             'checkBox_left_shoulder_2_flag': {'angle': 0, 'state': False},
             'checkBox_left_hip_2_flag': {'angle': 0, 'state': False},
             'checkBox_right_hip_2_flag': {'angle': 0, 'state': False},
@@ -240,8 +234,8 @@ class UserPageWindow(QWidget, Ui_UserPage):
         self.checkPointDict = {
             # 开始动作
             '0': 'checkBox_right_elbow',
-            '1': 'checkBox_right_shoulder',
-            '2': 'checkBox_left_elbow',
+            '1': 'checkBox_left_elbow',
+            '2': 'checkBox_right_shoulder',
             '3': 'checkBox_left_shoulder',
             '4': 'checkBox_left_hip',
             '5': 'checkBox_right_hip',
@@ -251,8 +245,8 @@ class UserPageWindow(QWidget, Ui_UserPage):
         self.checkPointDict_2 = {
             # 结束动作
             '0': 'checkBox_right_elbow_2',
-            '1': 'checkBox_right_shoulder_2',
-            '2': 'checkBox_left_elbow_2',
+            '1': 'checkBox_left_elbow_2',
+            '2': 'checkBox_right_shoulder_2',
             '3': 'checkBox_left_shoulder_2',
             '4': 'checkBox_left_hip_2',
             '5': 'checkBox_right_hip_2',
@@ -262,6 +256,15 @@ class UserPageWindow(QWidget, Ui_UserPage):
 
         self.checkPointJson = {'sport_name': None, 'check_point': self.checkBoxDictSum, 'startPosePicFile': None,
                                'stopPosePicFile': None}
+
+        self.angle14 = 0
+        self.angle13 = 0
+        self.angle26 = 0
+        self.angle25 = 0
+        self.angle24 = 0
+        self.angle23 = 0
+        self.angle12 = 0
+        self.angle11 = 0
 
     def keyPressEvent(self, QKeyEvent):
         """快捷键"""
@@ -344,7 +347,6 @@ class UserPageWindow(QWidget, Ui_UserPage):
         print(fileDirectory)
         for i in range(8):  # 情况勾选框
             self.checkPoint[i].setChecked(False)
-            self.checkPoint_2[i].setChecked(False)
         before, later, actions = poseImage.startOpenpose(fileDirectory)
         self.showAngle(actions, labels, _checkBoxDict, checkPointDictInedx)
         pix = QPixmap('background.jpg')
@@ -398,12 +400,15 @@ class UserPageWindow(QWidget, Ui_UserPage):
         return False
 
     # 根据选择参考修改flag
-    def checkBoxRecord(self, btn, _checkBoxDict, _checkBoxFlags, _state):
+    def checkBoxRecord(self, btn, _checkBoxDict, _checkBoxDict_2, _checkBoxFlags, _checkBoxFlags_2, _state):
         if btn.isChecked():
             _checkBoxDict[_checkBoxFlags][_state] = True
+            _checkBoxDict_2[_checkBoxFlags_2][_state] = True
         else:
             _checkBoxDict[_checkBoxFlags][_state] = False
+            _checkBoxDict_2[_checkBoxFlags_2][_state] = False
         print("flag:" + str(_checkBoxFlags) + "  " + str(_checkBoxDict.get(_checkBoxFlags)))
+        print("flag:" + str(_checkBoxFlags_2) + "  " + str(_checkBoxDict_2.get(_checkBoxFlags_2)))
 
     # 创建标准
     def createStandard(self):
@@ -421,9 +426,11 @@ class UserPageWindow(QWidget, Ui_UserPage):
             QMessageBox.information(None, "提示", "创建" + filename + "运动完成", QMessageBox.Ok)
 
     def readStandard(self):
-        global sport_name,check_point,startPosePicFile,stopPosePicFile
+        global sport_name, check_point, startPosePicFile, stopPosePicFile
         fileDirectory = QFileDialog.getOpenFileName(self, "请选择标准路径", "./config", "*.json")  # 返回选中的文件路径
-        if fileDirectory[0] == "": return
+        if fileDirectory[0] == "":  # 未选择文件
+            self.isReadStandard = False
+            return
         print(fileDirectory)
         with open(fileDirectory[0], 'r') as load_f:
             load_dict = json.load(load_f)
@@ -434,7 +441,8 @@ class UserPageWindow(QWidget, Ui_UserPage):
         check_point = load_dict['check_point']
         startPosePicFile = load_dict['startPosePicFile']
         stopPosePicFile = load_dict['stopPosePicFile']
-
+        print("check_point:" + str(check_point))
+        # print("check_point:"+str(type(check_point)))
         # 角度和勾选框数据导入
         for i in range(8):  # 开始动作数据导入
             self.PosePoint[i].setText("{:.2f}°".format(check_point[self.checkPointDict.get(str(i)) + '_flag']['angle']))
@@ -446,12 +454,6 @@ class UserPageWindow(QWidget, Ui_UserPage):
         for i in range(8):  # 结束动作数据导入
             self.PosePoint_2[i].setText("{:.2f}°".format(check_point[self.checkPointDict_2.get(str(i)) + '_flag']['angle']))
 
-        for i in range(8):  # 开始动作数据导入
-            if check_point[self.checkPointDict_2.get(str(i)) + '_flag']['state'] == True:
-                self.checkPoint_2[i].setChecked(True)
-            else:
-                self.checkPoint_2[i].setChecked(False)
-
         _width, _height = (int(self.label_startActionPicture.width()), int(self.label_startActionPicture.height()))
         print(_width, _height)
         pix_start = QPixmap(startPosePicFile)
@@ -461,22 +463,52 @@ class UserPageWindow(QWidget, Ui_UserPage):
         pix_stop = QPixmap(stopPosePicFile)
         pix_stop.scaled(_width, _height)
         self.label_stopActionPicture.setPixmap(pix_stop)
+        QMessageBox.information(None, "提示", "导入成功", QMessageBox.Ok)
+        self.isReadStandard = True
 
     def stopDetection(self):
         self.thstop = True
 
     # 检测界面
     def startDetection(self):
+        if not self.isReadStandard:
+            return
         mp_drawing = mp.solutions.drawing_utils
         mp_pose = mp.solutions.pose
         counter = 0
-        stage = None
+        stage = ['stretch', 'stretch', 'stretch', 'stretch', 'stretch', 'stretch', 'stretch', 'stretch']
         print("open camera")
         self.thstop = False
         self.cap = cv2.VideoCapture(0)  # 开启摄像头
         self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, 800)
         self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 600)
         self.cap.set(cv2.CAP_PROP_FPS, 20)
+        inputFlag = [False, False, False, False, False, False, False, False]
+        inputAngle_begin = [0, 0, 0, 0, 0, 0, 0, 0]
+        inputAngle_stop = [0, 0, 0, 0, 0, 0, 0, 0]
+        isChangePose = [False, False, False, False, False, False, False, False]
+        for i in range(8):  # 开始动作数据导入
+            inputAngle_begin[i] = check_point[self.checkPointDict.get(str(i)) + '_flag']['angle']
+        for i in range(8):  # 结束动作数据导入
+            inputAngle_stop[i] = check_point[self.checkPointDict_2.get(str(i)) + '_flag']['angle']
+        for i in range(8):  # 检测关节导入
+            if check_point[self.checkPointDict.get(str(i)) + '_flag']['state']:
+                inputFlag[i] = True
+            else:
+                inputFlag[i] = False
+
+        print("inputFlag:" + str(inputFlag))
+        print("inputAngle_begin:" + str(inputAngle_begin))
+        print("inputAngle_stop:" + str(inputAngle_stop))
+
+        for i in range(8):  # 数值大的放stop，小的放begin
+            if inputAngle_begin[i] > inputAngle_stop[i]:
+                tempAngle = inputAngle_stop[i]
+                inputAngle_stop[i] = inputAngle_begin[i]
+                inputAngle_begin[i] = tempAngle
+
+        print("inputAngle_begin:" + str(inputAngle_begin))
+        print("inputAngle_stop:" + str(inputAngle_stop))
         with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as pose:
             while self.cap.isOpened():
                 if self.thstop:
@@ -508,33 +540,124 @@ class UserPageWindow(QWidget, Ui_UserPage):
                 try:
                     landmarks = results.pose_landmarks.landmark
 
-                    # Get coordinates
-                    shoulder = [landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].x,
-                                landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].y]
-                    elbow = [landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].x,
-                             landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].y]
-                    wrist = [landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value].x,
-                             landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value].y]
+                    right_shoulder = [landmarks[mp_pose.PoseLandmark.RIGHT_SHOULDER.value].x,
+                                      landmarks[mp_pose.PoseLandmark.RIGHT_SHOULDER.value].y]
+                    right_elbow = [landmarks[mp_pose.PoseLandmark.RIGHT_ELBOW.value].x,
+                                   landmarks[mp_pose.PoseLandmark.RIGHT_ELBOW.value].y]
+                    right_wrist = [landmarks[mp_pose.PoseLandmark.RIGHT_WRIST.value].x,
+                                   landmarks[mp_pose.PoseLandmark.RIGHT_WRIST.value].y]
+                    left_shoulder = [landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].x,
+                                     landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].y]
+                    left_elbow = [landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].x,
+                                  landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].y]
+                    left_wrist = [landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value].x,
+                                  landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value].y]
+                    right_hip = [landmarks[mp_pose.PoseLandmark.RIGHT_HIP.value].x,
+                                 landmarks[mp_pose.PoseLandmark.RIGHT_HIP.value].y]
+                    right_knee = [landmarks[mp_pose.PoseLandmark.RIGHT_KNEE.value].x,
+                                  landmarks[mp_pose.PoseLandmark.RIGHT_KNEE.value].y]
+                    right_ankle = [landmarks[mp_pose.PoseLandmark.RIGHT_ANKLE.value].x,
+                                   landmarks[mp_pose.PoseLandmark.RIGHT_ANKLE.value].y]
+                    left_hip = [landmarks[mp_pose.PoseLandmark.LEFT_HIP.value].x,
+                                landmarks[mp_pose.PoseLandmark.LEFT_HIP.value].y]
+                    left_knee = [landmarks[mp_pose.PoseLandmark.LEFT_KNEE.value].x,
+                                 landmarks[mp_pose.PoseLandmark.LEFT_KNEE.value].y]
+                    left_ankle = [landmarks[mp_pose.PoseLandmark.LEFT_ANKLE.value].x,
+                                  landmarks[mp_pose.PoseLandmark.LEFT_ANKLE.value].y]
 
-                    # Calculate angle
-                    angle = poseImage.calculate_angle(shoulder, elbow, wrist)
+                    if inputFlag[0]:
+                        self.angle14 = poseImage.calculate_angle(right_shoulder, right_elbow, right_wrist)  # 右手臂，右手肘的角度 14
+                        if self.angle14 > inputAngle_stop[0]:
+                            stage[0] = "stretch"
+                            isChangePose[0] = False
+                        if self.angle14 < inputAngle_begin[0] and stage[0] == 'stretch':
+                            stage[0] = "crouch"
+                            isChangePose[0] = True
+                        print("angle14:", stage[0], "+", str(self.angle14), "+", inputAngle_begin[0], "+", inputAngle_stop[0])
+                    if inputFlag[1]:
+                        self.angle13 = poseImage.calculate_angle(left_shoulder, left_elbow, left_wrist)  # 左手臂，左手肘的角度 13
+                        if self.angle13 > inputAngle_stop[1]:
+                            stage[1] = "stretch"
+                            isChangePose[1] = False
+                        if self.angle13 < inputAngle_begin[1] and stage[1] == 'stretch':
+                            stage[1] = "crouch"
+                            isChangePose[1] = True
+                        print("angle13:", stage[1], "+", str(self.angle13), "+", inputAngle_begin[1], "+", inputAngle_stop[1])
+                    if inputFlag[2]:
+                        self.angle26 = poseImage.calculate_angle(right_hip, right_knee, right_ankle)  # 右大腿，右小腿的角度 26
+                        if self.angle26 > inputAngle_stop[2]:
+                            stage[2] = "stretch"
+                        if self.angle26 < inputAngle_begin[2] and stage[2] == 'stretch':
+                            stage[2] = "crouch"
+                            isChangePose[2] = True
+                        print("angle26:", stage[2], "+", str(self.angle26), "+", inputAngle_begin[2], "+", inputAngle_stop[2])
+                    if inputFlag[3]:
+                        self.angle25 = poseImage.calculate_angle(left_hip, left_knee, left_ankle)  # 左大腿，左小腿的角度 25
+                        if self.angle25 > inputAngle_stop[3]:
+                            stage[3] = "stretch"
+                        if self.angle25 < inputAngle_begin[3] and stage[2] == 'stretch':
+                            stage[3] = "crouch"
+                            isChangePose[3] = True
+                        print("angle25:", stage[3], "+", str(self.angle25), "+", inputAngle_begin[3], "+", inputAngle_stop[3])
+                    if inputFlag[4]:
+                        self.angle24 = poseImage.calculate_angle(right_shoulder, right_hip, right_knee)  # 右肩，右大腿的角度 24
+                        if self.angle24 > inputAngle_stop[4]:
+                            stage[4] = "stretch"
+                        if self.angle24 < inputAngle_begin[4] and stage[4] == 'stretch':
+                            stage[4] = "crouch"
+                            isChangePose[4] = True
+                        print("angle24:", stage[4], "+", str(self.angle24), "+", inputAngle_begin[4], "+", inputAngle_stop[4])
+                    if inputFlag[5]:
+                        self.angle23 = poseImage.calculate_angle(left_shoulder, left_hip, left_knee)  # 左肩，左大腿的角度 23
+                        if self.angle23 > inputAngle_stop[5]:
+                            stage[5] = "stretch"
+                        if self.angle23 < inputAngle_begin[5] and stage[5] == 'stretch':
+                            stage[5] = "crouch"
+                            isChangePose[5] = True
+                        print("angle23:", stage[5], "+", str(self.angle23), "+", inputAngle_begin[5], "+", inputAngle_stop[5])
+                    if inputFlag[6]:
+                        self.angle12 = poseImage.calculate_angle(right_elbow, right_shoulder, right_hip)  # 右大臂，右臀的角度 12
+                        if self.angle12 > inputAngle_stop[6]:
+                            stage[6] = "stretch"
+                        if self.angle12 < inputAngle_begin[6] and stage[6] == 'stretch':
+                            stage[6] = "crouch"
+                            isChangePose[6] = True
+                        print("angle12:", stage[6], "+", str(self.angle12), "+", inputAngle_begin[6], "+", inputAngle_stop[6])
+                    if inputFlag[7]:
+                        self.angle11 = poseImage.calculate_angle(left_elbow, left_shoulder, left_hip)  # 左大臂，左臀的角度 11
+                        if self.angle11 > inputAngle_stop[7]:
+                            stage[7] = "stretch"
+                        if self.angle11 < inputAngle_begin[7] and stage[7] == 'stretch':
+                            stage[7] = "crouch"
+                            isChangePose[7] = True
+                        print("angle11:", stage[7], "+", str(self.angle11), "+", inputAngle_begin[7], "+", inputAngle_stop[7])
+                    self.isChangePose = True
+                    for i in range(8):
+                        if inputFlag[i]:
+                            if not isChangePose[i]:
+                                self.isChangePose = False
+                    if self.isChangePose:  # 如果都为crouch则一次动作完成
+                        counter += 1
+                        for i in range(8):
+                            isChangePose[i] = False
+                        self.isChangePose = False
 
-                    # Visualize angle
-                    cv2.putText(image, str(angle),
-                                tuple(np.multiply(elbow, [640, 480]).astype(int)),
+
+                    cv2.putText(image, str(counter),
+                                (100, 100),
                                 cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA
                                 )
-
-                    # Curl counter logic
-                    if angle > 160:
-                        stage = "down"
-                    if angle < 40 and stage == 'down':
-                        stage = "up"
-                        counter += 1
-                        print(counter)
+                    #
+                    # # Curl counter logic
+                    # if angle > 160:
+                    #     stage = "down"
+                    # if angle < 40 and stage == 'down':
+                    #     stage = "up"
+                    #     counter += 1
+                    #     print(counter)
 
                 except:
-                    pass
+                    print("error")
                 # Render detections
                 mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS,
                                           mp_drawing.DrawingSpec(color=(245, 117, 66), thickness=2, circle_radius=2),
@@ -564,44 +687,33 @@ class UserPageWindow(QWidget, Ui_UserPage):
         # 检测界面
         self.pushButton_startDetection.clicked.connect(lambda: thread_it(True, self.startDetection))  # 开始检测
         self.pushButton_stopDetection.clicked.connect(self.stopDetection)  # 结束检测
+        self.pushButton_readStandard_2.clicked.connect(self.readStandard)  # 导入标准
         # 根据选择参考修改flag
         # 开始动作
         self.checkBox_right_elbow.stateChanged.connect(
-            lambda: self.checkBoxRecord(self.checkBox_right_elbow, self.checkBoxDict, 'checkBox_right_elbow_flag', 'state'))
+            lambda: self.checkBoxRecord(self.checkBox_right_elbow, self.checkBoxDict, self.checkBoxDict_2,
+                                        'checkBox_right_elbow_flag', 'checkBox_right_elbow_2_flag', 'state'))
         self.checkBox_right_shoulder.stateChanged.connect(
-            lambda: self.checkBoxRecord(self.checkBox_right_shoulder, self.checkBoxDict, 'checkBox_right_shoulder_flag', 'state'))
+            lambda: self.checkBoxRecord(self.checkBox_right_shoulder, self.checkBoxDict, self.checkBoxDict_2,
+                                        'checkBox_right_shoulder_flag', 'checkBox_right_shoulder_2_flag', 'state'))
         self.checkBox_left_elbow.stateChanged.connect(
-            lambda: self.checkBoxRecord(self.checkBox_left_elbow, self.checkBoxDict, 'checkBox_left_elbow_flag', 'state'))
+            lambda: self.checkBoxRecord(self.checkBox_left_elbow, self.checkBoxDict, self.checkBoxDict_2,
+                                        'checkBox_left_elbow_flag', 'checkBox_left_elbow_2_flag', 'state'))
         self.checkBox_left_shoulder.stateChanged.connect(
-            lambda: self.checkBoxRecord(self.checkBox_left_shoulder, self.checkBoxDict, 'checkBox_left_shoulder_flag', 'state'))
+            lambda: self.checkBoxRecord(self.checkBox_left_shoulder, self.checkBoxDict, self.checkBoxDict_2,
+                                        'checkBox_left_shoulder_flag', 'checkBox_left_shoulder_2_flag', 'state'))
         self.checkBox_left_hip.stateChanged.connect(
-            lambda: self.checkBoxRecord(self.checkBox_left_hip, self.checkBoxDict, 'checkBox_left_hip_flag', 'state'))
+            lambda: self.checkBoxRecord(self.checkBox_left_hip, self.checkBoxDict, self.checkBoxDict_2, 'checkBox_left_hip_flag',
+                                        'checkBox_left_hip_2_flag', 'state'))
         self.checkBox_right_hip.stateChanged.connect(
-            lambda: self.checkBoxRecord(self.checkBox_right_hip, self.checkBoxDict, 'checkBox_right_hip_flag', 'state'))
+            lambda: self.checkBoxRecord(self.checkBox_right_hip, self.checkBoxDict, self.checkBoxDict_2,
+                                        'checkBox_right_hip_flag', 'checkBox_right_hip_2_flag', 'state'))
         self.checkBox_left_knee.stateChanged.connect(
-            lambda: self.checkBoxRecord(self.checkBox_left_knee, self.checkBoxDict, 'checkBox_left_knee_flag', 'state'))
+            lambda: self.checkBoxRecord(self.checkBox_left_knee, self.checkBoxDict, self.checkBoxDict_2,
+                                        'checkBox_left_knee_flag', 'checkBox_left_knee_2_flag', 'state'))
         self.checkBox_right_knee.stateChanged.connect(
-            lambda: self.checkBoxRecord(self.checkBox_right_knee, self.checkBoxDict, 'checkBox_right_knee_flag', 'state'))
-
-        # 结束动作
-        self.checkBox_right_elbow_2.stateChanged.connect(
-            lambda: self.checkBoxRecord(self.checkBox_right_elbow_2, self.checkBoxDict_2, 'checkBox_right_elbow_2_flag', 'state'))
-        self.checkBox_right_shoulder_2.stateChanged.connect(
-            lambda: self.checkBoxRecord(self.checkBox_right_shoulder_2, self.checkBoxDict_2, 'checkBox_right_shoulder_2_flag',
-                                        'state'))
-        self.checkBox_left_elbow_2.stateChanged.connect(
-            lambda: self.checkBoxRecord(self.checkBox_left_elbow_2, self.checkBoxDict_2, 'checkBox_left_elbow_2_flag', 'state'))
-        self.checkBox_left_shoulder_2.stateChanged.connect(
-            lambda: self.checkBoxRecord(self.checkBox_left_shoulder_2, self.checkBoxDict_2, 'checkBox_left_shoulder_2_flag',
-                                        'state'))
-        self.checkBox_left_hip_2.stateChanged.connect(
-            lambda: self.checkBoxRecord(self.checkBox_left_hip_2, self.checkBoxDict_2, 'checkBox_left_hip_2_flag', 'state'))
-        self.checkBox_right_hip_2.stateChanged.connect(
-            lambda: self.checkBoxRecord(self.checkBox_right_hip_2, self.checkBoxDict_2, 'checkBox_right_hip_2_flag', 'state'))
-        self.checkBox_left_knee_2.stateChanged.connect(
-            lambda: self.checkBoxRecord(self.checkBox_left_knee_2, self.checkBoxDict_2, 'checkBox_left_knee_2_flag', 'state'))
-        self.checkBox_right_knee_2.stateChanged.connect(
-            lambda: self.checkBoxRecord(self.checkBox_right_knee_2, self.checkBoxDict_2, 'checkBox_right_knee_2_flag', 'state'))
+            lambda: self.checkBoxRecord(self.checkBox_right_knee, self.checkBoxDict, self.checkBoxDict_2,
+                                        'checkBox_right_knee_flag', 'checkBox_right_knee_2_flag', 'state'))
 
 
 def thread_it(_bool, func, *args):

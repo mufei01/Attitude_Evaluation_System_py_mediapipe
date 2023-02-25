@@ -281,7 +281,7 @@ border-left: 2px solid rgb(90, 216, 212)
          <enum>QFrame::NoFrame</enum>
         </property>
         <property name="currentIndex">
-         <number>4</number>
+         <number>3</number>
         </property>
         <widget class="QWidget" name="HomePage">
          <layout class="QVBoxLayout" name="verticalLayout_4" stretch="1,11">
@@ -1009,8 +1009,8 @@ QPushButton::disabled{
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>630</width>
-               <height>727</height>
+               <width>994</width>
+               <height>835</height>
               </rect>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -1046,8 +1046,8 @@ QPushButton::disabled{
                    </layout>
                   </widget>
                  </item>
-                 <item row="0" column="1">
-                  <widget class="QGroupBox" name="groupBox_2">
+                 <item row="1" column="0">
+                  <widget class="QGroupBox" name="groupBox_3">
                    <property name="font">
                     <font>
                      <family>微软雅黑</family>
@@ -1055,11 +1055,94 @@ QPushButton::disabled{
                     </font>
                    </property>
                    <property name="title">
-                    <string>起始动作标准</string>
+                    <string>结束动作</string>
                    </property>
-                   <layout class="QGridLayout" name="gridLayout_3">
+                   <layout class="QHBoxLayout" name="horizontalLayout_9">
+                    <item>
+                     <widget class="QLabel" name="label_stopActionPicture">
+                      <property name="text">
+                       <string/>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QGroupBox" name="groupBox_4">
+                   <property name="font">
+                    <font>
+                     <family>微软雅黑</family>
+                     <pointsize>11</pointsize>
+                    </font>
+                   </property>
+                   <property name="title">
+                    <string>结束动作标准</string>
+                   </property>
+                   <layout class="QGridLayout" name="gridLayout_4">
+                    <item row="9" column="2">
+                     <widget class="QCheckBox" name="checkBox_left_knee">
+                      <property name="font">
+                       <font>
+                        <family>微软雅黑</family>
+                        <pointsize>13</pointsize>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QCheckBox::indicator {
+width: 25px;
+height: 25px;
+}; 
+</string>
+                      </property>
+                      <property name="text">
+                       <string>作为标准</string>
+                      </property>
+                      <property name="iconSize">
+                       <size>
+                        <width>20</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                      <property name="tristate">
+                       <bool>false</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="5" column="0">
+                     <widget class="QLabel" name="label_right_shoulder_2">
+                      <property name="font">
+                       <font>
+                        <family>微软雅黑</family>
+                        <pointsize>13</pointsize>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string>右大臂</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="0">
+                     <widget class="QLabel" name="label_right_elbow_2">
+                      <property name="font">
+                       <font>
+                        <family>微软雅黑</family>
+                        <pointsize>13</pointsize>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string>右手肘</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                      </property>
+                     </widget>
+                    </item>
                     <item row="0" column="0">
-                     <widget class="QLabel" name="label_5">
+                     <widget class="QLabel" name="label_10">
                       <property name="sizePolicy">
                        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                         <horstretch>0</horstretch>
@@ -1082,8 +1165,53 @@ QPushButton::disabled{
                       </property>
                      </widget>
                     </item>
+                    <item row="7" column="2">
+                     <widget class="QCheckBox" name="checkBox_left_hip">
+                      <property name="font">
+                       <font>
+                        <family>微软雅黑</family>
+                        <pointsize>13</pointsize>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QCheckBox::indicator {
+width: 25px;
+height: 25px;
+}; 
+</string>
+                      </property>
+                      <property name="text">
+                       <string>作为标准</string>
+                      </property>
+                      <property name="iconSize">
+                       <size>
+                        <width>20</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                      <property name="tristate">
+                       <bool>false</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="8" column="0">
+                     <widget class="QLabel" name="label_right_hip_2">
+                      <property name="font">
+                       <font>
+                        <family>微软雅黑</family>
+                        <pointsize>13</pointsize>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string>右腰</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                      </property>
+                     </widget>
+                    </item>
                     <item row="0" column="1">
-                     <widget class="QLabel" name="label_6">
+                     <widget class="QLabel" name="label_8">
                       <property name="sizePolicy">
                        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                         <horstretch>0</horstretch>
@@ -1106,32 +1234,8 @@ QPushButton::disabled{
                       </property>
                      </widget>
                     </item>
-                    <item row="0" column="2">
-                     <widget class="QLabel" name="label_7">
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                       </sizepolicy>
-                      </property>
-                      <property name="font">
-                       <font>
-                        <family>微软雅黑</family>
-                        <pointsize>13</pointsize>
-                        <weight>75</weight>
-                        <bold>true</bold>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string>是否作为标准</string>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="0">
-                     <widget class="QLabel" name="label_right_elbow">
+                    <item row="10" column="1">
+                     <widget class="QLabel" name="label_right_knee_data_2">
                       <property name="font">
                        <font>
                         <family>微软雅黑</family>
@@ -1139,15 +1243,108 @@ QPushButton::disabled{
                        </font>
                       </property>
                       <property name="text">
-                       <string>右手肘</string>
+                       <string/>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
                       </property>
                      </widget>
                     </item>
-                    <item row="1" column="1">
-                     <widget class="QLabel" name="label_right_elbow_data">
+                    <item row="6" column="2">
+                     <widget class="QCheckBox" name="checkBox_left_shoulder">
+                      <property name="font">
+                       <font>
+                        <family>微软雅黑</family>
+                        <pointsize>13</pointsize>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QCheckBox::indicator {
+width: 25px;
+height: 25px;
+}; 
+</string>
+                      </property>
+                      <property name="text">
+                       <string>作为标准</string>
+                      </property>
+                      <property name="iconSize">
+                       <size>
+                        <width>20</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                      <property name="tristate">
+                       <bool>false</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="10" column="0">
+                     <widget class="QLabel" name="label_right_knee_2">
+                      <property name="font">
+                       <font>
+                        <family>微软雅黑</family>
+                        <pointsize>13</pointsize>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string>右膝盖</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="6" column="1">
+                     <widget class="QLabel" name="label_left_shoulder_data_2">
+                      <property name="font">
+                       <font>
+                        <family>微软雅黑</family>
+                        <pointsize>13</pointsize>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="8" column="1">
+                     <widget class="QLabel" name="label_right_hip_data_2">
+                      <property name="font">
+                       <font>
+                        <family>微软雅黑</family>
+                        <pointsize>13</pointsize>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="9" column="1">
+                     <widget class="QLabel" name="label_left_knee_data_2">
+                      <property name="font">
+                       <font>
+                        <family>微软雅黑</family>
+                        <pointsize>13</pointsize>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="4" column="1">
+                     <widget class="QLabel" name="label_left_elbow_data_2">
                       <property name="font">
                        <font>
                         <family>微软雅黑</family>
@@ -1191,405 +1388,7 @@ height: 25px;
                       </property>
                      </widget>
                     </item>
-                    <item row="2" column="0">
-                     <widget class="QLabel" name="label_right_shoulder">
-                      <property name="font">
-                       <font>
-                        <family>微软雅黑</family>
-                        <pointsize>13</pointsize>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string>右大臂</string>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="2" column="1">
-                     <widget class="QLabel" name="label_right_shoulder_data">
-                      <property name="font">
-                       <font>
-                        <family>微软雅黑</family>
-                        <pointsize>13</pointsize>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string/>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="2" column="2">
-                     <widget class="QCheckBox" name="checkBox_right_shoulder">
-                      <property name="font">
-                       <font>
-                        <family>微软雅黑</family>
-                        <pointsize>13</pointsize>
-                       </font>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">QCheckBox::indicator {
-width: 25px;
-height: 25px;
-}; 
-</string>
-                      </property>
-                      <property name="text">
-                       <string>作为标准</string>
-                      </property>
-                      <property name="iconSize">
-                       <size>
-                        <width>20</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                      <property name="tristate">
-                       <bool>false</bool>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="3" column="0">
-                     <widget class="QLabel" name="label_left_elbow">
-                      <property name="font">
-                       <font>
-                        <family>微软雅黑</family>
-                        <pointsize>13</pointsize>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string>左手肘</string>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="3" column="1">
-                     <widget class="QLabel" name="label_left_elbow_data">
-                      <property name="font">
-                       <font>
-                        <family>微软雅黑</family>
-                        <pointsize>13</pointsize>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string/>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="3" column="2">
-                     <widget class="QCheckBox" name="checkBox_left_elbow">
-                      <property name="font">
-                       <font>
-                        <family>微软雅黑</family>
-                        <pointsize>13</pointsize>
-                       </font>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">QCheckBox::indicator {
-width: 25px;
-height: 25px;
-}; 
-</string>
-                      </property>
-                      <property name="text">
-                       <string>作为标准</string>
-                      </property>
-                      <property name="iconSize">
-                       <size>
-                        <width>20</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                      <property name="tristate">
-                       <bool>false</bool>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="4" column="0">
-                     <widget class="QLabel" name="label_left_shoulder">
-                      <property name="font">
-                       <font>
-                        <family>微软雅黑</family>
-                        <pointsize>13</pointsize>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string>左大臂</string>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="4" column="1">
-                     <widget class="QLabel" name="label_left_shoulder_data">
-                      <property name="font">
-                       <font>
-                        <family>微软雅黑</family>
-                        <pointsize>13</pointsize>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string/>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="4" column="2">
-                     <widget class="QCheckBox" name="checkBox_left_shoulder">
-                      <property name="font">
-                       <font>
-                        <family>微软雅黑</family>
-                        <pointsize>13</pointsize>
-                       </font>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">QCheckBox::indicator {
-width: 25px;
-height: 25px;
-}; 
-</string>
-                      </property>
-                      <property name="text">
-                       <string>作为标准</string>
-                      </property>
-                      <property name="iconSize">
-                       <size>
-                        <width>20</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                      <property name="tristate">
-                       <bool>false</bool>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="5" column="0">
-                     <widget class="QLabel" name="label_left_hip">
-                      <property name="font">
-                       <font>
-                        <family>微软雅黑</family>
-                        <pointsize>13</pointsize>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string>左腰</string>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="5" column="1">
-                     <widget class="QLabel" name="label_left_hip_data">
-                      <property name="font">
-                       <font>
-                        <family>微软雅黑</family>
-                        <pointsize>13</pointsize>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string/>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="5" column="2">
-                     <widget class="QCheckBox" name="checkBox_left_hip">
-                      <property name="font">
-                       <font>
-                        <family>微软雅黑</family>
-                        <pointsize>13</pointsize>
-                       </font>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">QCheckBox::indicator {
-width: 25px;
-height: 25px;
-}; 
-</string>
-                      </property>
-                      <property name="text">
-                       <string>作为标准</string>
-                      </property>
-                      <property name="iconSize">
-                       <size>
-                        <width>20</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                      <property name="tristate">
-                       <bool>false</bool>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="6" column="0">
-                     <widget class="QLabel" name="label_right_hip">
-                      <property name="font">
-                       <font>
-                        <family>微软雅黑</family>
-                        <pointsize>13</pointsize>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string>右腰</string>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="6" column="1">
-                     <widget class="QLabel" name="label_right_hip_data">
-                      <property name="font">
-                       <font>
-                        <family>微软雅黑</family>
-                        <pointsize>13</pointsize>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string/>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="6" column="2">
-                     <widget class="QCheckBox" name="checkBox_right_hip">
-                      <property name="font">
-                       <font>
-                        <family>微软雅黑</family>
-                        <pointsize>13</pointsize>
-                       </font>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">QCheckBox::indicator {
-width: 25px;
-height: 25px;
-}; 
-</string>
-                      </property>
-                      <property name="text">
-                       <string>作为标准</string>
-                      </property>
-                      <property name="iconSize">
-                       <size>
-                        <width>20</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                      <property name="tristate">
-                       <bool>false</bool>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="7" column="0">
-                     <widget class="QLabel" name="label_left_knee">
-                      <property name="font">
-                       <font>
-                        <family>微软雅黑</family>
-                        <pointsize>13</pointsize>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string>左膝盖</string>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="7" column="1">
-                     <widget class="QLabel" name="label_left_knee_data">
-                      <property name="font">
-                       <font>
-                        <family>微软雅黑</family>
-                        <pointsize>13</pointsize>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string/>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="7" column="2">
-                     <widget class="QCheckBox" name="checkBox_left_knee">
-                      <property name="font">
-                       <font>
-                        <family>微软雅黑</family>
-                        <pointsize>13</pointsize>
-                       </font>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">QCheckBox::indicator {
-width: 25px;
-height: 25px;
-}; 
-</string>
-                      </property>
-                      <property name="text">
-                       <string>作为标准</string>
-                      </property>
-                      <property name="iconSize">
-                       <size>
-                        <width>20</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                      <property name="tristate">
-                       <bool>false</bool>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="8" column="0">
-                     <widget class="QLabel" name="label_right_knee">
-                      <property name="font">
-                       <font>
-                        <family>微软雅黑</family>
-                        <pointsize>13</pointsize>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string>右膝盖</string>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="8" column="1">
-                     <widget class="QLabel" name="label_right_knee_data">
-                      <property name="font">
-                       <font>
-                        <family>微软雅黑</family>
-                        <pointsize>13</pointsize>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string/>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="8" column="2">
+                    <item row="10" column="2">
                      <widget class="QCheckBox" name="checkBox_right_knee">
                       <property name="font">
                        <font>
@@ -1618,85 +1417,141 @@ height: 25px;
                       </property>
                      </widget>
                     </item>
-                   </layout>
-                  </widget>
-                 </item>
-                 <item row="1" column="0">
-                  <widget class="QGroupBox" name="groupBox_3">
-                   <property name="font">
-                    <font>
-                     <family>微软雅黑</family>
-                     <pointsize>11</pointsize>
-                    </font>
-                   </property>
-                   <property name="title">
-                    <string>结束动作</string>
-                   </property>
-                   <layout class="QHBoxLayout" name="horizontalLayout_9">
-                    <item>
-                     <widget class="QLabel" name="label_stopActionPicture">
-                      <property name="text">
-                       <string/>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                 </item>
-                 <item row="1" column="1">
-                  <widget class="QGroupBox" name="groupBox_4">
-                   <property name="font">
-                    <font>
-                     <family>微软雅黑</family>
-                     <pointsize>11</pointsize>
-                    </font>
-                   </property>
-                   <property name="title">
-                    <string>结束动作标准</string>
-                   </property>
-                   <layout class="QGridLayout" name="gridLayout_4">
-                    <item row="0" column="0">
-                     <widget class="QLabel" name="label_10">
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                       </sizepolicy>
-                      </property>
+                    <item row="4" column="0">
+                     <widget class="QLabel" name="label_left_elbow_2">
                       <property name="font">
                        <font>
                         <family>微软雅黑</family>
                         <pointsize>13</pointsize>
-                        <weight>75</weight>
-                        <bold>true</bold>
                        </font>
                       </property>
                       <property name="text">
-                       <string>肢体部位</string>
+                       <string>左手肘</string>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
                       </property>
                      </widget>
                     </item>
-                    <item row="0" column="1">
-                     <widget class="QLabel" name="label_8">
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                       </sizepolicy>
-                      </property>
+                    <item row="7" column="0">
+                     <widget class="QLabel" name="label_left_hip_2">
                       <property name="font">
                        <font>
                         <family>微软雅黑</family>
                         <pointsize>13</pointsize>
-                        <weight>75</weight>
-                        <bold>true</bold>
                        </font>
                       </property>
                       <property name="text">
-                       <string>关节角度</string>
+                       <string>左腰</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="1">
+                     <widget class="QLabel" name="label_right_elbow_data_2">
+                      <property name="font">
+                       <font>
+                        <family>微软雅黑</family>
+                        <pointsize>13</pointsize>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="9" column="0">
+                     <widget class="QLabel" name="label_left_knee_2">
+                      <property name="font">
+                       <font>
+                        <family>微软雅黑</family>
+                        <pointsize>13</pointsize>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string>左膝盖</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="5" column="1">
+                     <widget class="QLabel" name="label_right_shoulder_data_2">
+                      <property name="font">
+                       <font>
+                        <family>微软雅黑</family>
+                        <pointsize>13</pointsize>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="8" column="2">
+                     <widget class="QCheckBox" name="checkBox_right_hip">
+                      <property name="font">
+                       <font>
+                        <family>微软雅黑</family>
+                        <pointsize>13</pointsize>
+                       </font>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QCheckBox::indicator {
+width: 25px;
+height: 25px;
+}; 
+</string>
+                      </property>
+                      <property name="text">
+                       <string>作为标准</string>
+                      </property>
+                      <property name="iconSize">
+                       <size>
+                        <width>20</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                      <property name="tristate">
+                       <bool>false</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="6" column="0">
+                     <widget class="QLabel" name="label_left_shoulder_2">
+                      <property name="font">
+                       <font>
+                        <family>微软雅黑</family>
+                        <pointsize>13</pointsize>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string>左大臂</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="7" column="1">
+                     <widget class="QLabel" name="label_left_hip_data_2">
+                      <property name="font">
+                       <font>
+                        <family>微软雅黑</family>
+                        <pointsize>13</pointsize>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string/>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -1727,40 +1582,8 @@ height: 25px;
                       </property>
                      </widget>
                     </item>
-                    <item row="1" column="0">
-                     <widget class="QLabel" name="label_right_elbow_2">
-                      <property name="font">
-                       <font>
-                        <family>微软雅黑</family>
-                        <pointsize>13</pointsize>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string>右手肘</string>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="1">
-                     <widget class="QLabel" name="label_right_elbow_data_2">
-                      <property name="font">
-                       <font>
-                        <family>微软雅黑</family>
-                        <pointsize>13</pointsize>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string/>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="2">
-                     <widget class="QCheckBox" name="checkBox_right_elbow_2">
+                    <item row="5" column="2">
+                     <widget class="QCheckBox" name="checkBox_right_shoulder">
                       <property name="font">
                        <font>
                         <family>微软雅黑</family>
@@ -1785,165 +1608,11 @@ height: 25px;
                       </property>
                       <property name="tristate">
                        <bool>false</bool>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="2" column="0">
-                     <widget class="QLabel" name="label_right_shoulder_2">
-                      <property name="font">
-                       <font>
-                        <family>微软雅黑</family>
-                        <pointsize>13</pointsize>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string>右大臂</string>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="2" column="1">
-                     <widget class="QLabel" name="label_right_shoulder_data_2">
-                      <property name="font">
-                       <font>
-                        <family>微软雅黑</family>
-                        <pointsize>13</pointsize>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string/>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="2" column="2">
-                     <widget class="QCheckBox" name="checkBox_right_shoulder_2">
-                      <property name="font">
-                       <font>
-                        <family>微软雅黑</family>
-                        <pointsize>13</pointsize>
-                       </font>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">QCheckBox::indicator {
-width: 25px;
-height: 25px;
-}; 
-</string>
-                      </property>
-                      <property name="text">
-                       <string>作为标准</string>
-                      </property>
-                      <property name="iconSize">
-                       <size>
-                        <width>20</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                      <property name="tristate">
-                       <bool>false</bool>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="3" column="0">
-                     <widget class="QLabel" name="label_left_elbow_2">
-                      <property name="font">
-                       <font>
-                        <family>微软雅黑</family>
-                        <pointsize>13</pointsize>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string>左手肘</string>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="3" column="1">
-                     <widget class="QLabel" name="label_left_elbow_data_2">
-                      <property name="font">
-                       <font>
-                        <family>微软雅黑</family>
-                        <pointsize>13</pointsize>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string/>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="3" column="2">
-                     <widget class="QCheckBox" name="checkBox_left_elbow_2">
-                      <property name="font">
-                       <font>
-                        <family>微软雅黑</family>
-                        <pointsize>13</pointsize>
-                       </font>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">QCheckBox::indicator {
-width: 25px;
-height: 25px;
-}; 
-</string>
-                      </property>
-                      <property name="text">
-                       <string>作为标准</string>
-                      </property>
-                      <property name="iconSize">
-                       <size>
-                        <width>20</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                      <property name="tristate">
-                       <bool>false</bool>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="4" column="0">
-                     <widget class="QLabel" name="label_left_shoulder_2">
-                      <property name="font">
-                       <font>
-                        <family>微软雅黑</family>
-                        <pointsize>13</pointsize>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string>左大臂</string>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="4" column="1">
-                     <widget class="QLabel" name="label_left_shoulder_data_2">
-                      <property name="font">
-                       <font>
-                        <family>微软雅黑</family>
-                        <pointsize>13</pointsize>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string/>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
                       </property>
                      </widget>
                     </item>
                     <item row="4" column="2">
-                     <widget class="QCheckBox" name="checkBox_left_shoulder_2">
+                     <widget class="QCheckBox" name="checkBox_left_elbow">
                       <property name="font">
                        <font>
                         <family>微软雅黑</family>
@@ -1971,16 +1640,39 @@ height: 25px;
                       </property>
                      </widget>
                     </item>
-                    <item row="5" column="0">
-                     <widget class="QLabel" name="label_left_hip_2">
+                   </layout>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QGroupBox" name="groupBox_2">
+                   <property name="font">
+                    <font>
+                     <family>微软雅黑</family>
+                     <pointsize>11</pointsize>
+                    </font>
+                   </property>
+                   <property name="title">
+                    <string>起始动作标准</string>
+                   </property>
+                   <layout class="QGridLayout" name="gridLayout_3">
+                    <item row="0" column="2">
+                     <widget class="QLabel" name="label_7">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
                       <property name="font">
                        <font>
                         <family>微软雅黑</family>
                         <pointsize>13</pointsize>
+                        <weight>75</weight>
+                        <bold>true</bold>
                        </font>
                       </property>
                       <property name="text">
-                       <string>左腰</string>
+                       <string/>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -1988,7 +1680,7 @@ height: 25px;
                      </widget>
                     </item>
                     <item row="5" column="1">
-                     <widget class="QLabel" name="label_left_hip_data_2">
+                     <widget class="QLabel" name="label_left_shoulder_data">
                       <property name="font">
                        <font>
                         <family>微软雅黑</family>
@@ -2003,53 +1695,8 @@ height: 25px;
                       </property>
                      </widget>
                     </item>
-                    <item row="5" column="2">
-                     <widget class="QCheckBox" name="checkBox_left_hip_2">
-                      <property name="font">
-                       <font>
-                        <family>微软雅黑</family>
-                        <pointsize>13</pointsize>
-                       </font>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">QCheckBox::indicator {
-width: 25px;
-height: 25px;
-}; 
-</string>
-                      </property>
-                      <property name="text">
-                       <string>作为标准</string>
-                      </property>
-                      <property name="iconSize">
-                       <size>
-                        <width>20</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                      <property name="tristate">
-                       <bool>false</bool>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="6" column="0">
-                     <widget class="QLabel" name="label_right_hip_2">
-                      <property name="font">
-                       <font>
-                        <family>微软雅黑</family>
-                        <pointsize>13</pointsize>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string>右腰</string>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="6" column="1">
-                     <widget class="QLabel" name="label_right_hip_data_2">
+                    <item row="8" column="1">
+                     <widget class="QLabel" name="label_left_knee_data">
                       <property name="font">
                        <font>
                         <family>微软雅黑</family>
@@ -2064,37 +1711,56 @@ height: 25px;
                       </property>
                      </widget>
                     </item>
-                    <item row="6" column="2">
-                     <widget class="QCheckBox" name="checkBox_right_hip_2">
+                    <item row="0" column="1">
+                     <widget class="QLabel" name="label_6">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
                       <property name="font">
                        <font>
                         <family>微软雅黑</family>
                         <pointsize>13</pointsize>
+                        <weight>75</weight>
+                        <bold>true</bold>
                        </font>
                       </property>
-                      <property name="styleSheet">
-                       <string notr="true">QCheckBox::indicator {
-width: 25px;
-height: 25px;
-}; 
-</string>
-                      </property>
                       <property name="text">
-                       <string>作为标准</string>
+                       <string>关节角度</string>
                       </property>
-                      <property name="iconSize">
-                       <size>
-                        <width>20</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                      <property name="tristate">
-                       <bool>false</bool>
+                      <property name="alignment">
+                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
                       </property>
                      </widget>
                     </item>
-                    <item row="7" column="0">
-                     <widget class="QLabel" name="label_left_knee_2">
+                    <item row="0" column="0">
+                     <widget class="QLabel" name="label_5">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>微软雅黑</family>
+                        <pointsize>13</pointsize>
+                        <weight>75</weight>
+                        <bold>true</bold>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string>肢体部位</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="8" column="0">
+                     <widget class="QLabel" name="label_left_knee">
                       <property name="font">
                        <font>
                         <family>微软雅黑</family>
@@ -2110,7 +1776,7 @@ height: 25px;
                      </widget>
                     </item>
                     <item row="7" column="1">
-                     <widget class="QLabel" name="label_left_knee_data_2">
+                     <widget class="QLabel" name="label_right_hip_data">
                       <property name="font">
                        <font>
                         <family>微软雅黑</family>
@@ -2125,37 +1791,120 @@ height: 25px;
                       </property>
                      </widget>
                     </item>
-                    <item row="7" column="2">
-                     <widget class="QCheckBox" name="checkBox_left_knee_2">
+                    <item row="1" column="2">
+                     <spacer name="horizontalSpacer_9">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeType">
+                       <enum>QSizePolicy::Preferred</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                    <item row="6" column="0">
+                     <widget class="QLabel" name="label_left_hip">
                       <property name="font">
                        <font>
                         <family>微软雅黑</family>
                         <pointsize>13</pointsize>
                        </font>
                       </property>
-                      <property name="styleSheet">
-                       <string notr="true">QCheckBox::indicator {
-width: 25px;
-height: 25px;
-}; 
-</string>
-                      </property>
                       <property name="text">
-                       <string>作为标准</string>
+                       <string>左腰</string>
                       </property>
-                      <property name="iconSize">
-                       <size>
-                        <width>20</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                      <property name="tristate">
-                       <bool>false</bool>
+                      <property name="alignment">
+                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
                       </property>
                      </widget>
                     </item>
-                    <item row="8" column="0">
-                     <widget class="QLabel" name="label_right_knee_2">
+                    <item row="6" column="1">
+                     <widget class="QLabel" name="label_left_hip_data">
+                      <property name="font">
+                       <font>
+                        <family>微软雅黑</family>
+                        <pointsize>13</pointsize>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="9" column="1">
+                     <widget class="QLabel" name="label_right_knee_data">
+                      <property name="font">
+                       <font>
+                        <family>微软雅黑</family>
+                        <pointsize>13</pointsize>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="3" column="1">
+                     <widget class="QLabel" name="label_right_shoulder_data">
+                      <property name="font">
+                       <font>
+                        <family>微软雅黑</family>
+                        <pointsize>13</pointsize>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="5" column="0">
+                     <widget class="QLabel" name="label_left_shoulder">
+                      <property name="font">
+                       <font>
+                        <family>微软雅黑</family>
+                        <pointsize>13</pointsize>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string>左大臂</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="0">
+                     <widget class="QLabel" name="label_right_elbow">
+                      <property name="font">
+                       <font>
+                        <family>微软雅黑</family>
+                        <pointsize>13</pointsize>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string>右手肘</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="9" column="0">
+                     <widget class="QLabel" name="label_right_knee">
                       <property name="font">
                        <font>
                         <family>微软雅黑</family>
@@ -2170,8 +1919,8 @@ height: 25px;
                       </property>
                      </widget>
                     </item>
-                    <item row="8" column="1">
-                     <widget class="QLabel" name="label_right_knee_data_2">
+                    <item row="1" column="1">
+                     <widget class="QLabel" name="label_right_elbow_data">
                       <property name="font">
                        <font>
                         <family>微软雅黑</family>
@@ -2186,32 +1935,67 @@ height: 25px;
                       </property>
                      </widget>
                     </item>
-                    <item row="8" column="2">
-                     <widget class="QCheckBox" name="checkBox_right_knee_2">
+                    <item row="2" column="1">
+                     <widget class="QLabel" name="label_left_elbow_data">
                       <property name="font">
                        <font>
                         <family>微软雅黑</family>
                         <pointsize>13</pointsize>
                        </font>
                       </property>
-                      <property name="styleSheet">
-                       <string notr="true">QCheckBox::indicator {
-width: 25px;
-height: 25px;
-}; 
-</string>
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="7" column="0">
+                     <widget class="QLabel" name="label_right_hip">
+                      <property name="font">
+                       <font>
+                        <family>微软雅黑</family>
+                        <pointsize>13</pointsize>
+                       </font>
                       </property>
                       <property name="text">
-                       <string>作为标准</string>
+                       <string>右腰</string>
                       </property>
-                      <property name="iconSize">
-                       <size>
-                        <width>20</width>
-                        <height>20</height>
-                       </size>
+                      <property name="alignment">
+                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
                       </property>
-                      <property name="tristate">
-                       <bool>false</bool>
+                     </widget>
+                    </item>
+                    <item row="2" column="0">
+                     <widget class="QLabel" name="label_left_elbow">
+                      <property name="font">
+                       <font>
+                        <family>微软雅黑</family>
+                        <pointsize>13</pointsize>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string>左手肘</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="3" column="0">
+                     <widget class="QLabel" name="label_right_shoulder">
+                      <property name="font">
+                       <font>
+                        <family>微软雅黑</family>
+                        <pointsize>13</pointsize>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string>右大臂</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
                       </property>
                      </widget>
                     </item>
