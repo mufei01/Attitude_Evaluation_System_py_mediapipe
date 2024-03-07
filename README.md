@@ -2,6 +2,28 @@
 
 采用pyqt5设计，使用mediapipe作为姿态识别算法
 
+# 安装环境
+
+## 使用anaconda
+
+1. 下面mediapipe是环境名，随便取
+
+```python
+conda create --name mediapipe python=3.8.16
+```
+
+2. 激活环境
+
+```shell
+conda activate mediapipe
+```
+
+3. 安装环境
+
+```python
+conda install --file requirements.txt
+```
+
 ## 2023/2/11
 
 支持导入和导出自定义评价标准

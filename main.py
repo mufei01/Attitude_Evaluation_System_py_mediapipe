@@ -3,7 +3,11 @@
 import json
 import sys
 import threading
+import os
 
+sys.path.append(
+    'E:\myComputer\desktop\BigProject\Attitude_Evaluation_System_py_mediapipe\mediapipe_knn')  # 将此目录添加到检索目录中
+# print("路径", sys.path)
 import cv2
 # from PyQt5.QtCore import Qt
 # from PyQt5.QtGui import QPixmap
@@ -15,6 +19,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 
+
 import login
 from login import Ui_login
 from userpage import Ui_UserPage
@@ -22,6 +27,8 @@ import database
 import mediapipe_image as poseImage
 import mediapipe as mp
 import numpy as np
+
+
 
 # 当前用户,当前密码
 Now_Username = 'USER'
@@ -154,6 +161,8 @@ class UserPageWindow(QWidget, Ui_UserPage):
 
         self.stackedWidget.setCurrentIndex(0)  # 默认界面为HomePage
         self.setWindowState(Qt.WindowMaximized)  # 窗口最大化
+
+        self.pushButton_stopDetection.setEnabled(False)
 
         # 过滤事件绑定
         self.label_right_elbow.installEventFilter(self)
@@ -431,17 +440,17 @@ class UserPageWindow(QWidget, Ui_UserPage):
         if fileDirectory[0] == "":  # 未选择文件
             self.isReadStandard = False
             return
-        print(fileDirectory)
+        # print(fileDirectory)
         with open(fileDirectory[0], 'r') as load_f:
             load_dict = json.load(load_f)
-            print(load_dict)
-            print(type(load_dict))
-
+            # print(load_dict)
+            # print(type(load_dict))
+        self.label_video.setText("标准导入成功")
         sport_name = load_dict['sport_name']
         check_point = load_dict['check_point']
         startPosePicFile = load_dict['startPosePicFile']
         stopPosePicFile = load_dict['stopPosePicFile']
-        print("check_point:" + str(check_point))
+        # print("check_point:" + str(check_point))
         # print("check_point:"+str(type(check_point)))
         # 角度和勾选框数据导入
         for i in range(8):  # 开始动作数据导入
@@ -452,7 +461,8 @@ class UserPageWindow(QWidget, Ui_UserPage):
             else:
                 self.checkPoint[i].setChecked(False)
         for i in range(8):  # 结束动作数据导入
-            self.PosePoint_2[i].setText("{:.2f}°".format(check_point[self.checkPointDict_2.get(str(i)) + '_flag']['angle']))
+            self.PosePoint_2[i].setText(
+                "{:.2f}°".format(check_point[self.checkPointDict_2.get(str(i)) + '_flag']['angle']))
 
         _width, _height = (int(self.label_startActionPicture.width()), int(self.label_startActionPicture.height()))
         print(_width, _height)
@@ -463,16 +473,28 @@ class UserPageWindow(QWidget, Ui_UserPage):
         pix_stop = QPixmap(stopPosePicFile)
         pix_stop.scaled(_width, _height)
         self.label_stopActionPicture.setPixmap(pix_stop)
-        QMessageBox.information(None, "提示", "导入成功", QMessageBox.Ok)
+        # QMessageBox.information(None, "提示", "导入成功", QMessageBox.Ok)
         self.isReadStandard = True
 
     def stopDetection(self):
         self.thstop = True
+        self.label_video.setText("关闭相机中。。。")
+        self.pushButton_stopDetection.setEnabled(False)
+        self.pushButton_startDetection.setEnabled(True)
+        self.pushButton_readStandard_2.setEnabled(True)
+        self.timeEdit.setEnabled(True)
 
     # 检测界面
     def startDetection(self):
         if not self.isReadStandard:
             return
+        # 开始检测后关闭按钮
+        self.pushButton_stopDetection.setEnabled(True)
+        self.pushButton_startDetection.setEnabled(False)
+        self.pushButton_readStandard_2.setEnabled(False)
+        self.timeEdit.setEnabled(False)
+
+        self.label_video.setText("打开相机中。。。")
         mp_drawing = mp.solutions.drawing_utils
         mp_pose = mp.solutions.pose
         counter = 0
@@ -566,14 +588,16 @@ class UserPageWindow(QWidget, Ui_UserPage):
                                   landmarks[mp_pose.PoseLandmark.LEFT_ANKLE.value].y]
 
                     if inputFlag[0]:
-                        self.angle14 = poseImage.calculate_angle(right_shoulder, right_elbow, right_wrist)  # 右手臂，右手肘的角度 14
+                        self.angle14 = poseImage.calculate_angle(right_shoulder, right_elbow,
+                                                                 right_wrist)  # 右手臂，右手肘的角度 14
                         if self.angle14 > inputAngle_stop[0]:
                             stage[0] = "stretch"
                             isChangePose[0] = False
                         if self.angle14 < inputAngle_begin[0] and stage[0] == 'stretch':
                             stage[0] = "crouch"
                             isChangePose[0] = True
-                        print("angle14:", stage[0], "+", str(self.angle14), "+", inputAngle_begin[0], "+", inputAngle_stop[0])
+                        print("angle14:", stage[0], "+", str(self.angle14), "+", inputAngle_begin[0], "+",
+                              inputAngle_stop[0])
                     if inputFlag[1]:
                         self.angle13 = poseImage.calculate_angle(left_shoulder, left_elbow, left_wrist)  # 左手臂，左手肘的角度 13
                         if self.angle13 > inputAngle_stop[1]:
@@ -582,7 +606,8 @@ class UserPageWindow(QWidget, Ui_UserPage):
                         if self.angle13 < inputAngle_begin[1] and stage[1] == 'stretch':
                             stage[1] = "crouch"
                             isChangePose[1] = True
-                        print("angle13:", stage[1], "+", str(self.angle13), "+", inputAngle_begin[1], "+", inputAngle_stop[1])
+                        print("angle13:", stage[1], "+", str(self.angle13), "+", inputAngle_begin[1], "+",
+                              inputAngle_stop[1])
                     if inputFlag[2]:
                         self.angle26 = poseImage.calculate_angle(right_hip, right_knee, right_ankle)  # 右大腿，右小腿的角度 26
                         if self.angle26 > inputAngle_stop[2]:
@@ -590,7 +615,8 @@ class UserPageWindow(QWidget, Ui_UserPage):
                         if self.angle26 < inputAngle_begin[2] and stage[2] == 'stretch':
                             stage[2] = "crouch"
                             isChangePose[2] = True
-                        print("angle26:", stage[2], "+", str(self.angle26), "+", inputAngle_begin[2], "+", inputAngle_stop[2])
+                        print("angle26:", stage[2], "+", str(self.angle26), "+", inputAngle_begin[2], "+",
+                              inputAngle_stop[2])
                     if inputFlag[3]:
                         self.angle25 = poseImage.calculate_angle(left_hip, left_knee, left_ankle)  # 左大腿，左小腿的角度 25
                         if self.angle25 > inputAngle_stop[3]:
@@ -598,7 +624,8 @@ class UserPageWindow(QWidget, Ui_UserPage):
                         if self.angle25 < inputAngle_begin[3] and stage[2] == 'stretch':
                             stage[3] = "crouch"
                             isChangePose[3] = True
-                        print("angle25:", stage[3], "+", str(self.angle25), "+", inputAngle_begin[3], "+", inputAngle_stop[3])
+                        print("angle25:", stage[3], "+", str(self.angle25), "+", inputAngle_begin[3], "+",
+                              inputAngle_stop[3])
                     if inputFlag[4]:
                         self.angle24 = poseImage.calculate_angle(right_shoulder, right_hip, right_knee)  # 右肩，右大腿的角度 24
                         if self.angle24 > inputAngle_stop[4]:
@@ -606,7 +633,8 @@ class UserPageWindow(QWidget, Ui_UserPage):
                         if self.angle24 < inputAngle_begin[4] and stage[4] == 'stretch':
                             stage[4] = "crouch"
                             isChangePose[4] = True
-                        print("angle24:", stage[4], "+", str(self.angle24), "+", inputAngle_begin[4], "+", inputAngle_stop[4])
+                        print("angle24:", stage[4], "+", str(self.angle24), "+", inputAngle_begin[4], "+",
+                              inputAngle_stop[4])
                     if inputFlag[5]:
                         self.angle23 = poseImage.calculate_angle(left_shoulder, left_hip, left_knee)  # 左肩，左大腿的角度 23
                         if self.angle23 > inputAngle_stop[5]:
@@ -614,7 +642,8 @@ class UserPageWindow(QWidget, Ui_UserPage):
                         if self.angle23 < inputAngle_begin[5] and stage[5] == 'stretch':
                             stage[5] = "crouch"
                             isChangePose[5] = True
-                        print("angle23:", stage[5], "+", str(self.angle23), "+", inputAngle_begin[5], "+", inputAngle_stop[5])
+                        print("angle23:", stage[5], "+", str(self.angle23), "+", inputAngle_begin[5], "+",
+                              inputAngle_stop[5])
                     if inputFlag[6]:
                         self.angle12 = poseImage.calculate_angle(right_elbow, right_shoulder, right_hip)  # 右大臂，右臀的角度 12
                         if self.angle12 > inputAngle_stop[6]:
@@ -622,7 +651,8 @@ class UserPageWindow(QWidget, Ui_UserPage):
                         if self.angle12 < inputAngle_begin[6] and stage[6] == 'stretch':
                             stage[6] = "crouch"
                             isChangePose[6] = True
-                        print("angle12:", stage[6], "+", str(self.angle12), "+", inputAngle_begin[6], "+", inputAngle_stop[6])
+                        print("angle12:", stage[6], "+", str(self.angle12), "+", inputAngle_begin[6], "+",
+                              inputAngle_stop[6])
                     if inputFlag[7]:
                         self.angle11 = poseImage.calculate_angle(left_elbow, left_shoulder, left_hip)  # 左大臂，左臀的角度 11
                         if self.angle11 > inputAngle_stop[7]:
@@ -630,7 +660,8 @@ class UserPageWindow(QWidget, Ui_UserPage):
                         if self.angle11 < inputAngle_begin[7] and stage[7] == 'stretch':
                             stage[7] = "crouch"
                             isChangePose[7] = True
-                        print("angle11:", stage[7], "+", str(self.angle11), "+", inputAngle_begin[7], "+", inputAngle_stop[7])
+                        print("angle11:", stage[7], "+", str(self.angle11), "+", inputAngle_begin[7], "+",
+                              inputAngle_stop[7])
                     self.isChangePose = True
                     for i in range(8):
                         if inputFlag[i]:
@@ -642,32 +673,33 @@ class UserPageWindow(QWidget, Ui_UserPage):
                             isChangePose[i] = False
                         self.isChangePose = False
 
-
                     cv2.putText(image, str(counter),
                                 (100, 100),
                                 cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA
                                 )
-                    #
-                    # # Curl counter logic
-                    # if angle > 160:
-                    #     stage = "down"
-                    # if angle < 40 and stage == 'down':
-                    #     stage = "up"
-                    #     counter += 1
-                    #     print(counter)
+                    print(self.timeEdit.time())
+                    print(self.timeEdit.time().minute())
+                    print(self.timeEdit.time().second())
 
                 except:
                     print("error")
-                # Render detections
+
                 mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS,
                                           mp_drawing.DrawingSpec(color=(245, 117, 66), thickness=2, circle_radius=2),
                                           mp_drawing.DrawingSpec(color=(245, 66, 230), thickness=2, circle_radius=2)
                                           )
-                # 转为QImage对象
 
+                # 转为QImage对象
                 self.image = QImage(image.data, width, height, bytesPerLine, QImage.Format_RGB888)
                 self.label_video.setPixmap(
                     QPixmap.fromImage(self.image).scaled(self.label_video.width(), self.label_video.height()))
+
+    def startDetection2(self):
+        # flag = int(input("请输入检测的运动类型（数字）：1. 俯卧撑\t2. 深蹲\t3. 引体向上（暂未获得csv文件）\n"))
+        flag = 1
+        print("\n按英文状态下的q或esc退出摄像头采集")
+        # tp.trainset_process(flag)
+        vc.process(flag,self)
 
     # 信号连接
     def connect_signals(self):
@@ -688,8 +720,12 @@ class UserPageWindow(QWidget, Ui_UserPage):
         self.pushButton_startDetection.clicked.connect(lambda: thread_it(True, self.startDetection))  # 开始检测
         self.pushButton_stopDetection.clicked.connect(self.stopDetection)  # 结束检测
         self.pushButton_readStandard_2.clicked.connect(self.readStandard)  # 导入标准
+
+        # 深度学习检测界面
+        # self.pushButton_startDetection_2.clicked.connect(self.startDetection2)
+        self.pushButton_startDetection_2.clicked.connect(lambda: thread_it(False, self.startDetection2))
         # 根据选择参考修改flag
-        # 开始动作
+        # 检测关节点选择
         self.checkBox_right_elbow.stateChanged.connect(
             lambda: self.checkBoxRecord(self.checkBox_right_elbow, self.checkBoxDict, self.checkBoxDict_2,
                                         'checkBox_right_elbow_flag', 'checkBox_right_elbow_2_flag', 'state'))
@@ -703,7 +739,8 @@ class UserPageWindow(QWidget, Ui_UserPage):
             lambda: self.checkBoxRecord(self.checkBox_left_shoulder, self.checkBoxDict, self.checkBoxDict_2,
                                         'checkBox_left_shoulder_flag', 'checkBox_left_shoulder_2_flag', 'state'))
         self.checkBox_left_hip.stateChanged.connect(
-            lambda: self.checkBoxRecord(self.checkBox_left_hip, self.checkBoxDict, self.checkBoxDict_2, 'checkBox_left_hip_flag',
+            lambda: self.checkBoxRecord(self.checkBox_left_hip, self.checkBoxDict, self.checkBoxDict_2,
+                                        'checkBox_left_hip_flag',
                                         'checkBox_left_hip_2_flag', 'state'))
         self.checkBox_right_hip.stateChanged.connect(
             lambda: self.checkBoxRecord(self.checkBox_right_hip, self.checkBoxDict, self.checkBoxDict_2,
@@ -730,7 +767,10 @@ app = QApplication(sys.argv)
 login_ui = LoginWindow()  # 登录界面
 login_ui.show()  # 打开登录界面
 userPage = UserPageWindow()  # 主界面
-
+# 导入深度学习的模块
+import mediapipe_knn.videoprocess as vp
+import mediapipe_knn.trainingsetprocess as tp
+import mediapipe_knn.videocapture as vc
 database.createConnection()  # 创建连接
 # database.createTable()#创建数据库内容
 

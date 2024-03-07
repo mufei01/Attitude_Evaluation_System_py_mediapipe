@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1266</width>
+    <width>1255</width>
     <height>853</height>
    </rect>
   </property>
@@ -281,14 +281,14 @@ border-left: 2px solid rgb(90, 216, 212)
          <enum>QFrame::NoFrame</enum>
         </property>
         <property name="currentIndex">
-         <number>3</number>
+         <number>2</number>
         </property>
         <widget class="QWidget" name="HomePage">
          <layout class="QVBoxLayout" name="verticalLayout_4" stretch="1,11">
           <item>
            <widget class="QWidget" name="widget_10" native="true">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -340,7 +340,7 @@ border-left: 2px solid rgb(90, 216, 212)
              <bool>true</bool>
             </property>
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -656,6 +656,12 @@ QPushButton::disabled{
          <layout class="QVBoxLayout" name="verticalLayout" stretch="1,11">
           <item>
            <widget class="QWidget" name="widget_5" native="true">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="styleSheet">
              <string notr="true">QWidget#widget_5
 {
@@ -1009,7 +1015,7 @@ QPushButton::disabled{
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>994</width>
+               <width>985</width>
                <height>835</height>
               </rect>
              </property>
@@ -2173,13 +2179,13 @@ selection-background-color: darkgray;
                     <bool>true</bool>
                    </property>
                    <property name="alignment">
-                    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                    <set>Qt::AlignCenter</set>
                    </property>
                    <property name="dragEnabled">
                     <bool>false</bool>
                    </property>
                    <property name="placeholderText">
-                    <string>输入运动的名字</string>
+                    <string>先输入运动的名字</string>
                    </property>
                    <property name="clearButtonEnabled">
                     <bool>true</bool>
@@ -2337,7 +2343,7 @@ QPushButton::disabled{
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>976</width>
+               <width>967</width>
                <height>817</height>
               </rect>
              </property>
@@ -2369,11 +2375,11 @@ QPushButton::disabled{
                    <property name="font">
                     <font>
                      <family>微软雅黑</family>
-                     <pointsize>100</pointsize>
+                     <pointsize>58</pointsize>
                     </font>
                    </property>
                    <property name="text">
-                    <string>Video</string>
+                    <string>请导入标准</string>
                    </property>
                    <property name="alignment">
                     <set>Qt::AlignCenter</set>
@@ -2400,13 +2406,79 @@ QPushButton::disabled{
                 </property>
                 <layout class="QHBoxLayout" name="horizontalLayout_12">
                  <item>
-                  <spacer name="horizontalSpacer_20">
+                  <spacer name="horizontalSpacer_11">
                    <property name="orientation">
                     <enum>Qt::Horizontal</enum>
                    </property>
+                   <property name="sizeType">
+                    <enum>QSizePolicy::Expanding</enum>
+                   </property>
                    <property name="sizeHint" stdset="0">
                     <size>
-                     <width>225</width>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="label_4">
+                   <property name="font">
+                    <font>
+                     <family>微软雅黑</family>
+                     <pointsize>13</pointsize>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>计时</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QTimeEdit" name="timeEdit">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>微软雅黑</family>
+                     <pointsize>13</pointsize>
+                    </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true"/>
+                   </property>
+                   <property name="wrapping">
+                    <bool>false</bool>
+                   </property>
+                   <property name="frame">
+                    <bool>true</bool>
+                   </property>
+                   <property name="buttonSymbols">
+                    <enum>QAbstractSpinBox::UpDownArrows</enum>
+                   </property>
+                   <property name="displayFormat">
+                    <string>mm:ss</string>
+                   </property>
+                   <property name="timeSpec">
+                    <enum>Qt::LocalTime</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_10">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeType">
+                    <enum>QSizePolicy::Fixed</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
                      <height>20</height>
                     </size>
                    </property>
@@ -2631,7 +2703,7 @@ QPushButton::disabled{
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
-                     <width>225</width>
+                     <width>40</width>
                      <height>20</height>
                     </size>
                    </property>
@@ -2657,10 +2729,34 @@ QPushButton::disabled{
 	border-radius:20px;
 }</string>
             </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_13">
+             <item>
+              <widget class="QLabel" name="label_video_2">
+               <property name="font">
+                <font>
+                 <family>微软雅黑</family>
+                 <pointsize>58</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>请导入标准</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </widget>
           </item>
           <item>
            <widget class="QWidget" name="widget_19" native="true">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="styleSheet">
              <string notr="true">QWidget#widget_19
 {
@@ -2668,6 +2764,312 @@ QPushButton::disabled{
 	border-radius:20px;
 }</string>
             </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_11">
+             <item>
+              <spacer name="horizontalSpacer_13">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::Expanding</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>137</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_9">
+               <property name="font">
+                <font>
+                 <family>微软雅黑</family>
+                 <pointsize>13</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>计时</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QTimeEdit" name="timeEdit_2">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="font">
+                <font>
+                 <family>微软雅黑</family>
+                 <pointsize>13</pointsize>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
+               <property name="wrapping">
+                <bool>false</bool>
+               </property>
+               <property name="frame">
+                <bool>true</bool>
+               </property>
+               <property name="buttonSymbols">
+                <enum>QAbstractSpinBox::UpDownArrows</enum>
+               </property>
+               <property name="displayFormat">
+                <string>mm:ss</string>
+               </property>
+               <property name="timeSpec">
+                <enum>Qt::LocalTime</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_12">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::Fixed</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_startDetection_2">
+               <property name="styleSheet">
+                <string notr="true">/**正常情况下样式**/
+QPushButton{
+	font: 13pt &quot;微软雅黑&quot;;
+    color: #2f3640;
+    background-color: #f5f6fa;
+    border-color: #2f3640;
+    border-radius: 15px;
+    border-style: solid;
+    border-width: 2px;
+    padding: 5px;
+}
+
+/**鼠标停留在按钮上的样式**/
+QPushButton::hover{	
+    color: #FFFFFF;
+    background-color: #718093;
+    border-color: #2f3640;
+}
+
+/**鼠标按压下去的样式**/
+QPushButton::pressed,QPushButton::checked{
+    color: #FFFFFF;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);
+}
+
+/**按钮失能情况下样式**/
+QPushButton::disabled{
+    color: #FFFFFF;
+    background-color: #dcdde1;
+    border-color: #dcdde1;
+}
+</string>
+               </property>
+               <property name="text">
+                <string>开始检测</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_23">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::Fixed</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_stopDetection_2">
+               <property name="styleSheet">
+                <string notr="true">/**正常情况下样式**/
+QPushButton{
+	font: 13pt &quot;微软雅黑&quot;;
+    color: #2f3640;
+    background-color: #f5f6fa;
+    border-color: #2f3640;
+    border-radius: 15px;
+    border-style: solid;
+    border-width: 2px;
+    padding: 5px;
+}
+
+/**鼠标停留在按钮上的样式**/
+QPushButton::hover{	
+    color: #FFFFFF;
+    background-color: #718093;
+    border-color: #2f3640;
+}
+
+/**鼠标按压下去的样式**/
+QPushButton::pressed,QPushButton::checked{
+    color: #FFFFFF;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);
+}
+
+/**按钮失能情况下样式**/
+QPushButton::disabled{
+    color: #FFFFFF;
+    background-color: #dcdde1;
+    border-color: #dcdde1;
+}
+</string>
+               </property>
+               <property name="text">
+                <string>结束检测</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_22">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::Fixed</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_readStandard_3">
+               <property name="styleSheet">
+                <string notr="true">/**正常情况下样式**/
+QPushButton{
+	font: 13pt &quot;微软雅黑&quot;;
+    color: #2f3640;
+    background-color: #f5f6fa;
+    border-color: #2f3640;
+    border-radius: 15px;
+    border-style: solid;
+    border-width: 2px;
+    padding: 5px;
+}
+
+/**鼠标停留在按钮上的样式**/
+QPushButton::hover{	
+    color: #FFFFFF;
+    background-color: #718093;
+    border-color: #2f3640;
+}
+
+/**鼠标按压下去的样式**/
+QPushButton::pressed,QPushButton::checked{
+    color: #FFFFFF;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);
+}
+
+/**按钮失能情况下样式**/
+QPushButton::disabled{
+    color: #FFFFFF;
+    background-color: #dcdde1;
+    border-color: #dcdde1;
+}
+</string>
+               </property>
+               <property name="text">
+                <string>导入标准</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_21">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::Fixed</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_showResult_2">
+               <property name="styleSheet">
+                <string notr="true">/**正常情况下样式**/
+QPushButton{
+	font: 13pt &quot;微软雅黑&quot;;
+    color: #2f3640;
+    background-color: #f5f6fa;
+    border-color: #2f3640;
+    border-radius: 15px;
+    border-style: solid;
+    border-width: 2px;
+    padding: 5px;
+}
+
+/**鼠标停留在按钮上的样式**/
+QPushButton::hover{	
+    color: #FFFFFF;
+    background-color: #718093;
+    border-color: #2f3640;
+}
+
+/**鼠标按压下去的样式**/
+QPushButton::pressed,QPushButton::checked{
+    color: #FFFFFF;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);
+}
+
+/**按钮失能情况下样式**/
+QPushButton::disabled{
+    color: #FFFFFF;
+    background-color: #dcdde1;
+    border-color: #dcdde1;
+}
+</string>
+               </property>
+               <property name="text">
+                <string>显示成绩</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_20">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>137</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
            </widget>
           </item>
          </layout>

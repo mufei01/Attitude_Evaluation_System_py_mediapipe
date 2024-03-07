@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_UserPage(object):
     def setupUi(self, UserPage):
         UserPage.setObjectName("UserPage")
-        UserPage.resize(1266, 853)
+        UserPage.resize(1255, 853)
         self.verticalLayout_8 = QtWidgets.QVBoxLayout(UserPage)
         self.verticalLayout_8.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_8.setObjectName("verticalLayout_8")
@@ -170,7 +170,7 @@ class Ui_UserPage(object):
         self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.HomePage)
         self.verticalLayout_4.setObjectName("verticalLayout_4")
         self.widget_10 = QtWidgets.QWidget(self.HomePage)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.widget_10.sizePolicy().hasHeightForWidth())
@@ -210,7 +210,7 @@ class Ui_UserPage(object):
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.widget_8 = QtWidgets.QWidget(self.PersionalInfoPage)
         self.widget_8.setEnabled(True)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.widget_8.sizePolicy().hasHeightForWidth())
@@ -429,6 +429,11 @@ class Ui_UserPage(object):
         self.verticalLayout = QtWidgets.QVBoxLayout(self.ChangePwdPage)
         self.verticalLayout.setObjectName("verticalLayout")
         self.widget_5 = QtWidgets.QWidget(self.ChangePwdPage)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.widget_5.sizePolicy().hasHeightForWidth())
+        self.widget_5.setSizePolicy(sizePolicy)
         self.widget_5.setStyleSheet("QWidget#widget_5\n"
 "{\n"
 "    background-color: rgba(255, 255, 255,255);\n"
@@ -668,7 +673,7 @@ class Ui_UserPage(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 994, 835))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 985, 835))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.verticalLayout_7 = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_7.setObjectName("verticalLayout_7")
@@ -855,15 +860,15 @@ class Ui_UserPage(object):
         self.label_left_knee_data_2.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.label_left_knee_data_2.setObjectName("label_left_knee_data_2")
         self.gridLayout_4.addWidget(self.label_left_knee_data_2, 9, 1, 1, 1)
-        self.label_right_shoulder_data_2 = QtWidgets.QLabel(self.groupBox_4)
+        self.label_left_elbow_data_2 = QtWidgets.QLabel(self.groupBox_4)
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         font.setPointSize(13)
-        self.label_right_shoulder_data_2.setFont(font)
-        self.label_right_shoulder_data_2.setText("")
-        self.label_right_shoulder_data_2.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
-        self.label_right_shoulder_data_2.setObjectName("label_right_shoulder_data_2")
-        self.gridLayout_4.addWidget(self.label_right_shoulder_data_2, 4, 1, 1, 1)
+        self.label_left_elbow_data_2.setFont(font)
+        self.label_left_elbow_data_2.setText("")
+        self.label_left_elbow_data_2.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.label_left_elbow_data_2.setObjectName("label_left_elbow_data_2")
+        self.gridLayout_4.addWidget(self.label_left_elbow_data_2, 4, 1, 1, 1)
         self.checkBox_right_elbow = QtWidgets.QCheckBox(self.groupBox_4)
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
@@ -925,15 +930,15 @@ class Ui_UserPage(object):
         self.label_left_knee_2.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.label_left_knee_2.setObjectName("label_left_knee_2")
         self.gridLayout_4.addWidget(self.label_left_knee_2, 9, 0, 1, 1)
-        self.label_left_elbow_data_2 = QtWidgets.QLabel(self.groupBox_4)
+        self.label_right_shoulder_data_2 = QtWidgets.QLabel(self.groupBox_4)
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         font.setPointSize(13)
-        self.label_left_elbow_data_2.setFont(font)
-        self.label_left_elbow_data_2.setText("")
-        self.label_left_elbow_data_2.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
-        self.label_left_elbow_data_2.setObjectName("label_left_elbow_data_2")
-        self.gridLayout_4.addWidget(self.label_left_elbow_data_2, 5, 1, 1, 1)
+        self.label_right_shoulder_data_2.setFont(font)
+        self.label_right_shoulder_data_2.setText("")
+        self.label_right_shoulder_data_2.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.label_right_shoulder_data_2.setObjectName("label_right_shoulder_data_2")
+        self.gridLayout_4.addWidget(self.label_right_shoulder_data_2, 5, 1, 1, 1)
         self.checkBox_right_hip = QtWidgets.QCheckBox(self.groupBox_4)
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
@@ -1126,15 +1131,15 @@ class Ui_UserPage(object):
         self.label_right_knee_data.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.label_right_knee_data.setObjectName("label_right_knee_data")
         self.gridLayout_3.addWidget(self.label_right_knee_data, 9, 1, 1, 1)
-        self.label_left_elbow_data = QtWidgets.QLabel(self.groupBox_2)
+        self.label_right_shoulder_data = QtWidgets.QLabel(self.groupBox_2)
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         font.setPointSize(13)
-        self.label_left_elbow_data.setFont(font)
-        self.label_left_elbow_data.setText("")
-        self.label_left_elbow_data.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
-        self.label_left_elbow_data.setObjectName("label_left_elbow_data")
-        self.gridLayout_3.addWidget(self.label_left_elbow_data, 3, 1, 1, 1)
+        self.label_right_shoulder_data.setFont(font)
+        self.label_right_shoulder_data.setText("")
+        self.label_right_shoulder_data.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.label_right_shoulder_data.setObjectName("label_right_shoulder_data")
+        self.gridLayout_3.addWidget(self.label_right_shoulder_data, 3, 1, 1, 1)
         self.label_left_shoulder = QtWidgets.QLabel(self.groupBox_2)
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
@@ -1168,15 +1173,15 @@ class Ui_UserPage(object):
         self.label_right_elbow_data.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.label_right_elbow_data.setObjectName("label_right_elbow_data")
         self.gridLayout_3.addWidget(self.label_right_elbow_data, 1, 1, 1, 1)
-        self.label_right_shoulder_data = QtWidgets.QLabel(self.groupBox_2)
+        self.label_left_elbow_data = QtWidgets.QLabel(self.groupBox_2)
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         font.setPointSize(13)
-        self.label_right_shoulder_data.setFont(font)
-        self.label_right_shoulder_data.setText("")
-        self.label_right_shoulder_data.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
-        self.label_right_shoulder_data.setObjectName("label_right_shoulder_data")
-        self.gridLayout_3.addWidget(self.label_right_shoulder_data, 2, 1, 1, 1)
+        self.label_left_elbow_data.setFont(font)
+        self.label_left_elbow_data.setText("")
+        self.label_left_elbow_data.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.label_left_elbow_data.setObjectName("label_left_elbow_data")
+        self.gridLayout_3.addWidget(self.label_left_elbow_data, 2, 1, 1, 1)
         self.label_right_hip = QtWidgets.QLabel(self.groupBox_2)
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
@@ -1308,7 +1313,7 @@ class Ui_UserPage(object):
 "}")
         self.lineEdit_sportName.setText("")
         self.lineEdit_sportName.setFrame(True)
-        self.lineEdit_sportName.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.lineEdit_sportName.setAlignment(QtCore.Qt.AlignCenter)
         self.lineEdit_sportName.setDragEnabled(False)
         self.lineEdit_sportName.setClearButtonEnabled(True)
         self.lineEdit_sportName.setObjectName("lineEdit_sportName")
@@ -1402,7 +1407,7 @@ class Ui_UserPage(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollArea_2.setObjectName("scrollArea_2")
         self.scrollAreaWidgetContents_2 = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, 0, 976, 817))
+        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, 0, 967, 817))
         self.scrollAreaWidgetContents_2.setObjectName("scrollAreaWidgetContents_2")
         self.verticalLayout_9 = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents_2)
         self.verticalLayout_9.setContentsMargins(0, 0, 0, 0)
@@ -1419,7 +1424,7 @@ class Ui_UserPage(object):
         self.label_video = QtWidgets.QLabel(self.widget_16)
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
-        font.setPointSize(100)
+        font.setPointSize(58)
         self.label_video.setFont(font)
         self.label_video.setAlignment(QtCore.Qt.AlignCenter)
         self.label_video.setObjectName("label_video")
@@ -1439,8 +1444,34 @@ class Ui_UserPage(object):
         self.widget_17.setObjectName("widget_17")
         self.horizontalLayout_12 = QtWidgets.QHBoxLayout(self.widget_17)
         self.horizontalLayout_12.setObjectName("horizontalLayout_12")
-        spacerItem11 = QtWidgets.QSpacerItem(225, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem11 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_12.addItem(spacerItem11)
+        self.label_4 = QtWidgets.QLabel(self.widget_17)
+        font = QtGui.QFont()
+        font.setFamily("微软雅黑")
+        font.setPointSize(13)
+        self.label_4.setFont(font)
+        self.label_4.setObjectName("label_4")
+        self.horizontalLayout_12.addWidget(self.label_4)
+        self.timeEdit = QtWidgets.QTimeEdit(self.widget_17)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.timeEdit.sizePolicy().hasHeightForWidth())
+        self.timeEdit.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("微软雅黑")
+        font.setPointSize(13)
+        self.timeEdit.setFont(font)
+        self.timeEdit.setStyleSheet("")
+        self.timeEdit.setWrapping(False)
+        self.timeEdit.setFrame(True)
+        self.timeEdit.setButtonSymbols(QtWidgets.QAbstractSpinBox.UpDownArrows)
+        self.timeEdit.setTimeSpec(QtCore.Qt.LocalTime)
+        self.timeEdit.setObjectName("timeEdit")
+        self.horizontalLayout_12.addWidget(self.timeEdit)
+        spacerItem12 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_12.addItem(spacerItem12)
         self.pushButton_startDetection = QtWidgets.QPushButton(self.widget_17)
         self.pushButton_startDetection.setStyleSheet("/**正常情况下样式**/\n"
 "QPushButton{\n"
@@ -1476,8 +1507,8 @@ class Ui_UserPage(object):
 "")
         self.pushButton_startDetection.setObjectName("pushButton_startDetection")
         self.horizontalLayout_12.addWidget(self.pushButton_startDetection)
-        spacerItem12 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_12.addItem(spacerItem12)
+        spacerItem13 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_12.addItem(spacerItem13)
         self.pushButton_stopDetection = QtWidgets.QPushButton(self.widget_17)
         self.pushButton_stopDetection.setStyleSheet("/**正常情况下样式**/\n"
 "QPushButton{\n"
@@ -1513,8 +1544,8 @@ class Ui_UserPage(object):
 "")
         self.pushButton_stopDetection.setObjectName("pushButton_stopDetection")
         self.horizontalLayout_12.addWidget(self.pushButton_stopDetection)
-        spacerItem13 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_12.addItem(spacerItem13)
+        spacerItem14 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_12.addItem(spacerItem14)
         self.pushButton_readStandard_2 = QtWidgets.QPushButton(self.widget_17)
         self.pushButton_readStandard_2.setStyleSheet("/**正常情况下样式**/\n"
 "QPushButton{\n"
@@ -1550,8 +1581,8 @@ class Ui_UserPage(object):
 "")
         self.pushButton_readStandard_2.setObjectName("pushButton_readStandard_2")
         self.horizontalLayout_12.addWidget(self.pushButton_readStandard_2)
-        spacerItem14 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_12.addItem(spacerItem14)
+        spacerItem15 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_12.addItem(spacerItem15)
         self.pushButton_showResult = QtWidgets.QPushButton(self.widget_17)
         self.pushButton_showResult.setStyleSheet("/**正常情况下样式**/\n"
 "QPushButton{\n"
@@ -1587,8 +1618,8 @@ class Ui_UserPage(object):
 "")
         self.pushButton_showResult.setObjectName("pushButton_showResult")
         self.horizontalLayout_12.addWidget(self.pushButton_showResult)
-        spacerItem15 = QtWidgets.QSpacerItem(225, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_12.addItem(spacerItem15)
+        spacerItem16 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_12.addItem(spacerItem16)
         self.verticalLayout_9.addWidget(self.widget_17)
         self.scrollArea_2.setWidget(self.scrollAreaWidgetContents_2)
         self.verticalLayout_12.addWidget(self.scrollArea_2)
@@ -1604,14 +1635,207 @@ class Ui_UserPage(object):
 "    border-radius:20px;\n"
 "}")
         self.widget_18.setObjectName("widget_18")
+        self.horizontalLayout_13 = QtWidgets.QHBoxLayout(self.widget_18)
+        self.horizontalLayout_13.setObjectName("horizontalLayout_13")
+        self.label_video_2 = QtWidgets.QLabel(self.widget_18)
+        font = QtGui.QFont()
+        font.setFamily("微软雅黑")
+        font.setPointSize(58)
+        self.label_video_2.setFont(font)
+        self.label_video_2.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_video_2.setObjectName("label_video_2")
+        self.horizontalLayout_13.addWidget(self.label_video_2)
         self.verticalLayout_10.addWidget(self.widget_18)
         self.widget_19 = QtWidgets.QWidget(self.videoCheckPage)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.widget_19.sizePolicy().hasHeightForWidth())
+        self.widget_19.setSizePolicy(sizePolicy)
         self.widget_19.setStyleSheet("QWidget#widget_19\n"
 "{\n"
 "    background-color: rgba(255, 255, 255,255);\n"
 "    border-radius:20px;\n"
 "}")
         self.widget_19.setObjectName("widget_19")
+        self.horizontalLayout_11 = QtWidgets.QHBoxLayout(self.widget_19)
+        self.horizontalLayout_11.setObjectName("horizontalLayout_11")
+        spacerItem17 = QtWidgets.QSpacerItem(137, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_11.addItem(spacerItem17)
+        self.label_9 = QtWidgets.QLabel(self.widget_19)
+        font = QtGui.QFont()
+        font.setFamily("微软雅黑")
+        font.setPointSize(13)
+        self.label_9.setFont(font)
+        self.label_9.setObjectName("label_9")
+        self.horizontalLayout_11.addWidget(self.label_9)
+        self.timeEdit_2 = QtWidgets.QTimeEdit(self.widget_19)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.timeEdit_2.sizePolicy().hasHeightForWidth())
+        self.timeEdit_2.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("微软雅黑")
+        font.setPointSize(13)
+        self.timeEdit_2.setFont(font)
+        self.timeEdit_2.setStyleSheet("")
+        self.timeEdit_2.setWrapping(False)
+        self.timeEdit_2.setFrame(True)
+        self.timeEdit_2.setButtonSymbols(QtWidgets.QAbstractSpinBox.UpDownArrows)
+        self.timeEdit_2.setTimeSpec(QtCore.Qt.LocalTime)
+        self.timeEdit_2.setObjectName("timeEdit_2")
+        self.horizontalLayout_11.addWidget(self.timeEdit_2)
+        spacerItem18 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_11.addItem(spacerItem18)
+        self.pushButton_startDetection_2 = QtWidgets.QPushButton(self.widget_19)
+        self.pushButton_startDetection_2.setStyleSheet("/**正常情况下样式**/\n"
+"QPushButton{\n"
+"    font: 13pt \"微软雅黑\";\n"
+"    color: #2f3640;\n"
+"    background-color: #f5f6fa;\n"
+"    border-color: #2f3640;\n"
+"    border-radius: 15px;\n"
+"    border-style: solid;\n"
+"    border-width: 2px;\n"
+"    padding: 5px;\n"
+"}\n"
+"\n"
+"/**鼠标停留在按钮上的样式**/\n"
+"QPushButton::hover{    \n"
+"    color: #FFFFFF;\n"
+"    background-color: #718093;\n"
+"    border-color: #2f3640;\n"
+"}\n"
+"\n"
+"/**鼠标按压下去的样式**/\n"
+"QPushButton::pressed,QPushButton::checked{\n"
+"    color: #FFFFFF;\n"
+"    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);\n"
+"}\n"
+"\n"
+"/**按钮失能情况下样式**/\n"
+"QPushButton::disabled{\n"
+"    color: #FFFFFF;\n"
+"    background-color: #dcdde1;\n"
+"    border-color: #dcdde1;\n"
+"}\n"
+"")
+        self.pushButton_startDetection_2.setObjectName("pushButton_startDetection_2")
+        self.horizontalLayout_11.addWidget(self.pushButton_startDetection_2)
+        spacerItem19 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_11.addItem(spacerItem19)
+        self.pushButton_stopDetection_2 = QtWidgets.QPushButton(self.widget_19)
+        self.pushButton_stopDetection_2.setStyleSheet("/**正常情况下样式**/\n"
+"QPushButton{\n"
+"    font: 13pt \"微软雅黑\";\n"
+"    color: #2f3640;\n"
+"    background-color: #f5f6fa;\n"
+"    border-color: #2f3640;\n"
+"    border-radius: 15px;\n"
+"    border-style: solid;\n"
+"    border-width: 2px;\n"
+"    padding: 5px;\n"
+"}\n"
+"\n"
+"/**鼠标停留在按钮上的样式**/\n"
+"QPushButton::hover{    \n"
+"    color: #FFFFFF;\n"
+"    background-color: #718093;\n"
+"    border-color: #2f3640;\n"
+"}\n"
+"\n"
+"/**鼠标按压下去的样式**/\n"
+"QPushButton::pressed,QPushButton::checked{\n"
+"    color: #FFFFFF;\n"
+"    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);\n"
+"}\n"
+"\n"
+"/**按钮失能情况下样式**/\n"
+"QPushButton::disabled{\n"
+"    color: #FFFFFF;\n"
+"    background-color: #dcdde1;\n"
+"    border-color: #dcdde1;\n"
+"}\n"
+"")
+        self.pushButton_stopDetection_2.setObjectName("pushButton_stopDetection_2")
+        self.horizontalLayout_11.addWidget(self.pushButton_stopDetection_2)
+        spacerItem20 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_11.addItem(spacerItem20)
+        self.pushButton_readStandard_3 = QtWidgets.QPushButton(self.widget_19)
+        self.pushButton_readStandard_3.setStyleSheet("/**正常情况下样式**/\n"
+"QPushButton{\n"
+"    font: 13pt \"微软雅黑\";\n"
+"    color: #2f3640;\n"
+"    background-color: #f5f6fa;\n"
+"    border-color: #2f3640;\n"
+"    border-radius: 15px;\n"
+"    border-style: solid;\n"
+"    border-width: 2px;\n"
+"    padding: 5px;\n"
+"}\n"
+"\n"
+"/**鼠标停留在按钮上的样式**/\n"
+"QPushButton::hover{    \n"
+"    color: #FFFFFF;\n"
+"    background-color: #718093;\n"
+"    border-color: #2f3640;\n"
+"}\n"
+"\n"
+"/**鼠标按压下去的样式**/\n"
+"QPushButton::pressed,QPushButton::checked{\n"
+"    color: #FFFFFF;\n"
+"    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);\n"
+"}\n"
+"\n"
+"/**按钮失能情况下样式**/\n"
+"QPushButton::disabled{\n"
+"    color: #FFFFFF;\n"
+"    background-color: #dcdde1;\n"
+"    border-color: #dcdde1;\n"
+"}\n"
+"")
+        self.pushButton_readStandard_3.setObjectName("pushButton_readStandard_3")
+        self.horizontalLayout_11.addWidget(self.pushButton_readStandard_3)
+        spacerItem21 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_11.addItem(spacerItem21)
+        self.pushButton_showResult_2 = QtWidgets.QPushButton(self.widget_19)
+        self.pushButton_showResult_2.setStyleSheet("/**正常情况下样式**/\n"
+"QPushButton{\n"
+"    font: 13pt \"微软雅黑\";\n"
+"    color: #2f3640;\n"
+"    background-color: #f5f6fa;\n"
+"    border-color: #2f3640;\n"
+"    border-radius: 15px;\n"
+"    border-style: solid;\n"
+"    border-width: 2px;\n"
+"    padding: 5px;\n"
+"}\n"
+"\n"
+"/**鼠标停留在按钮上的样式**/\n"
+"QPushButton::hover{    \n"
+"    color: #FFFFFF;\n"
+"    background-color: #718093;\n"
+"    border-color: #2f3640;\n"
+"}\n"
+"\n"
+"/**鼠标按压下去的样式**/\n"
+"QPushButton::pressed,QPushButton::checked{\n"
+"    color: #FFFFFF;\n"
+"    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #273c75, stop:1 #487eb0);\n"
+"}\n"
+"\n"
+"/**按钮失能情况下样式**/\n"
+"QPushButton::disabled{\n"
+"    color: #FFFFFF;\n"
+"    background-color: #dcdde1;\n"
+"    border-color: #dcdde1;\n"
+"}\n"
+"")
+        self.pushButton_showResult_2.setObjectName("pushButton_showResult_2")
+        self.horizontalLayout_11.addWidget(self.pushButton_showResult_2)
+        spacerItem22 = QtWidgets.QSpacerItem(137, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_11.addItem(spacerItem22)
         self.verticalLayout_10.addWidget(self.widget_19)
         self.verticalLayout_10.setStretch(0, 11)
         self.verticalLayout_10.setStretch(1, 1)
@@ -1622,7 +1846,7 @@ class Ui_UserPage(object):
         self.verticalLayout_8.addWidget(self.widget_2)
 
         self.retranslateUi(UserPage)
-        self.stackedWidget.setCurrentIndex(3)
+        self.stackedWidget.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(UserPage)
 
     def retranslateUi(self, UserPage):
@@ -1694,12 +1918,21 @@ class Ui_UserPage(object):
         self.label_right_shoulder.setText(_translate("UserPage", "右大臂"))
         self.pushButton_startAction.setText(_translate("UserPage", "开始动作"))
         self.pushButton_stopAction.setText(_translate("UserPage", "结束动作"))
-        self.lineEdit_sportName.setPlaceholderText(_translate("UserPage", "输入运动的名字"))
+        self.lineEdit_sportName.setPlaceholderText(_translate("UserPage", "先输入运动的名字"))
         self.pushButton_cteateStandard.setText(_translate("UserPage", "生成标准"))
         self.pushButton_readStandard.setText(_translate("UserPage", "打开标准"))
-        self.label_video.setText(_translate("UserPage", "Video"))
+        self.label_video.setText(_translate("UserPage", "请导入标准"))
+        self.label_4.setText(_translate("UserPage", "计时"))
+        self.timeEdit.setDisplayFormat(_translate("UserPage", "mm:ss"))
         self.pushButton_startDetection.setText(_translate("UserPage", "开始检测"))
         self.pushButton_stopDetection.setText(_translate("UserPage", "结束检测"))
         self.pushButton_readStandard_2.setText(_translate("UserPage", "导入标准"))
         self.pushButton_showResult.setText(_translate("UserPage", "显示成绩"))
+        self.label_video_2.setText(_translate("UserPage", "请导入标准"))
+        self.label_9.setText(_translate("UserPage", "计时"))
+        self.timeEdit_2.setDisplayFormat(_translate("UserPage", "mm:ss"))
+        self.pushButton_startDetection_2.setText(_translate("UserPage", "开始检测"))
+        self.pushButton_stopDetection_2.setText(_translate("UserPage", "结束检测"))
+        self.pushButton_readStandard_3.setText(_translate("UserPage", "导入标准"))
+        self.pushButton_showResult_2.setText(_translate("UserPage", "显示成绩"))
 import res_rc
